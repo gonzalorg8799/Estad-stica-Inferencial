@@ -165,3 +165,16 @@ lines(c(2.1, 2.1), c(Li.segunda.pequeña, Ls.segunda.pequeña), col = "red")
 # Etiquetas para identificar franjas
 text(0.7, max(y) - 0.5, label = "Primera franja", col = "blue")
 text(1.3, max(y) - 0.5, label = "Segunda franja", col = "red")
+
+#separacion en parejas homosexuales y heterosexuales
+primera.franja.homosexuales <- log(uniones.primera.franja$Parejas.homosexuales)
+primera.franja.heterosexuales <- log(uniones.primera.franja$Parejas.heterosexuales)
+segunda.franja.homosexuales <- log(uniones.primera.franja$Parejas.homosexuales)
+segunda.franja.heterosexuales <- log(uniones.primera.franja$Parejas.heterosexuales)
+
+total.parejas.homosexuales.primera.franja=length(primera.franja.homosexuales)
+total.parejas.homosexuales.segunda.franja=length(segunda.franja.homosexuales)
+##revisar esto, no se estan guardando el total de solicitudes
+total.primera.franja.grande=length(solicitudes.primera.muestra.grande.transformadas)
+#proporciones muestrales
+p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/
