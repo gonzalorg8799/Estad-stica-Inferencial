@@ -167,14 +167,30 @@ text(0.7, max(y) - 0.5, label = "Primera franja", col = "blue")
 text(1.3, max(y) - 0.5, label = "Segunda franja", col = "red")
 
 #separacion en parejas homosexuales y heterosexuales
-primera.franja.homosexuales <- log(uniones.primera.franja$Parejas.homosexuales)
-primera.franja.heterosexuales <- log(uniones.primera.franja$Parejas.heterosexuales)
-segunda.franja.homosexuales <- log(uniones.primera.franja$Parejas.homosexuales)
-segunda.franja.heterosexuales <- log(uniones.primera.franja$Parejas.heterosexuales)
 
-total.parejas.homosexuales.primera.franja=length(primera.franja.homosexuales)
-total.parejas.homosexuales.segunda.franja=length(segunda.franja.homosexuales)
-##revisar esto, no se estan guardando el total de solicitudes
-total.primera.franja.grande=length(solicitudes.primera.muestra.grande.transformadas)
+#validar que los datos sean numericos ya que si las solicitudes son 0 y les hacemos el logaritmo sale NA (not a number)
+parejas.homosexuales.validas.pf<- uniones.primera.franja$Parejas.homosexuales[uniones.primera.franja$Parejas.homosexuales > 0]
+parejas.heterosexuales.validas.pf<-uniones.primera.franja$Parejas.heterosexuales[uniones.primera.franja$Parejas.heterosexuales>0]
+parejas.homosexuales.validas.sf<-uniones.segunda.franja$Parejas.homosexuales[uniones.segunda.franja$Parejas.homosexuales>0]
+parejas.heterosexuales.validas.sf<-uniones.segunda.franja$Parejas.heterosexuales[uniones.segunda.franja$Parejas.homosexuales>0]
+
+primera.franja.homosexuales <- log(parejas.homosexuales.validas.pf)
+primera.franja.heterosexuales <- log(parejas.heterosexuales.validas.pf)
+segunda.franja.homosexuales <- log(parejas.homosexuales.validas.sf)
+segunda.franja.heterosexuales <- log(parejas.heterosexuales.validas.sf)
+
+
+total.parejas.homosexuales.primera.franja <- sum(primera.franja.homosexuales)
+total.parejas.homosexuales.segunda.franja<- sum(segunda.franja.homosexuales)
+total.parejas.heterosexuales.primera.franja<-sum(primera.franja.heterosexuales)
+total.parejas.heterosexuales.segunda.franja<-sum(segunda.franja.heterosexuales)
+
+#suma de las solicitudes totales del grupo grande (con el logaritmo hecho) 
+total.primera.franja.grande<-sum(solicitudes.primera.muestra.grande.transformadas)
+total.segunda.franja.grande<-sum(solicitudes.segunda.muestra.grande.transformadas)
+
+#suma de las solicitudes totales del grupo pequeño (con el logaritmo hecho)
+total.primera.franja.pequeña<-sum(solicitudes.primera.muestra.pequeña.transformadas)
+total.segunda.franja.pequeña<- sum(solicitudes.segunda.muestra.pequeña.transformadas)
 #proporciones muestrales
 p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/
