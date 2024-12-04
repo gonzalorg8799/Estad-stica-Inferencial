@@ -179,6 +179,7 @@ primera.franja.heterosexuales <- log(parejas.heterosexuales.validas.pf)
 segunda.franja.homosexuales <- log(parejas.homosexuales.validas.sf)
 segunda.franja.heterosexuales <- log(parejas.heterosexuales.validas.sf)
 
+total.solicitudes.primera<- sum(solicitudes.primera.muestra.grande.transformadas)
 
 total.parejas.homosexuales.primera.franja <- sum(primera.franja.homosexuales)
 total.parejas.homosexuales.segunda.franja<- sum(segunda.franja.homosexuales)
@@ -193,4 +194,25 @@ total.segunda.franja.grande<-sum(solicitudes.segunda.muestra.grande.transformada
 total.primera.franja.pequeña<-sum(solicitudes.primera.muestra.pequeña.transformadas)
 total.segunda.franja.pequeña<- sum(solicitudes.segunda.muestra.pequeña.transformadas)
 #proporciones muestrales
-p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/
+p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/length(solicitudes.primera.muestra.grande.transformadas)
+p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/length(solicitudes.segunda.muestra.grande.transformadas)
+
+
+## Intervalos de confianza
+prop.test(total.parejas.homosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
+
+prop.test(total.parejas.homosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
+
+
+
+#####################Muestras Pequeñas################################
+##como necesito coger solo las parejas validas(que tengan solicitudes mayores a 0) tengo que volver a hacer las muestras pequeñas pero solo con datos validos
+parejas.homosexuales.muestra.pequeña.pf<-sample(primera.franja.homosexuales,20)
+parejas.heterosexuales.muestra.pequeña.pf<-sample(primera.franja.heterosexuales,20)
+
+##segunda franja
+parejas.homosexuales.muestra.pequeña.sf<-sample(segunda.franja.homosexuales,20)
+parejas.heterosexuales.muestra.pequeña.sf<-sample(segunda.franja.heterosexuales,20)
+
+total.parejas.homosexuales.muestra.pequeña.pf<-sum(parejas.homosexuales.muestra.pequeña.pf)
+
