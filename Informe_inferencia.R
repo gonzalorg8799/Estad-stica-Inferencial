@@ -207,12 +207,82 @@ prop.test(total.parejas.homosexuales.segunda.franja,total.segunda.franja.grande,
 
 #####################Muestras Pequeñas################################
 ##como necesito coger solo las parejas validas(que tengan solicitudes mayores a 0) tengo que volver a hacer las muestras pequeñas pero solo con datos validos
-parejas.homosexuales.muestra.pequeña.pf<-sample(primera.franja.homosexuales,20)
-parejas.heterosexuales.muestra.pequeña.pf<-sample(primera.franja.heterosexuales,20)
+parejas.homosexuales.muestra.pequeña.pf<-sample(primera.franja.homosexuales,10)
+parejas.heterosexuales.muestra.pequeña.pf<-sample(primera.franja.heterosexuales,10)
+total.muestra.pequeña.primera.franja=sum(parejas.homosexuales.muestra.pequeña.pf, parejas.heterosexuales.muestra.pequeña.pf)
+total.muestra.pequeña.segunda.franja=sum(parejas.homosexuales.muestra.pequeña.sf, parejas.heterosexuales.muestra.pequeña.sf)
 
 ##segunda franja
 parejas.homosexuales.muestra.pequeña.sf<-sample(segunda.franja.homosexuales,20)
 parejas.heterosexuales.muestra.pequeña.sf<-sample(segunda.franja.heterosexuales,20)
 
 total.parejas.homosexuales.muestra.pequeña.pf<-sum(parejas.homosexuales.muestra.pequeña.pf)
+total.parejas.homosexuales.muestra.pequeña.sf<-sum(parejas.homosexuales.muestra.pequeña.sf)
+   
+##Proporciones muestrales
+p.primera.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja
+p.segunda.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja
 
+##Intervalos de confianza
+prop.test(total.parejas.homosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)
+prop.test(total.parejas.homosexuales.muestra.pequeña.sf,total.muestra.pequeña.segunda.franja,conf.level = 0.95, correct = FALSE)
+
+
+
+# --- Intervalos de confianza para muestras grandes ---
+# Primera franja (Mañana)
+test.primera.grande <- prop.test(total.parejas.homosexuales.primera.franja, 
+                                 total.primera.franja.grande, 
+                                 conf.level = 0.95, correct = FALSE)
+Li.primera.grande <- test.primera.grande$conf.int[1]
+Ls.primera.grande <- test.primera.grande$conf.int[2]
+
+# Segunda franja (Tarde)
+test.segunda.grande <- prop.test(total.parejas.homosexuales.segunda.franja, 
+                                 total.segunda.franja.grande, 
+                                 conf.level = 0.95, correct = FALSE)
+Li.segunda.grande <- test.segunda.grande$conf.int[1]
+Ls.segunda.grande <- test.segunda.grande$conf.int[2]
+
+# --- Intervalos de confianza para muestras pequeñas ---
+# Primera franja (Mañana)
+test.primera.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.pf, 
+                                  total.muestra.pequeña.primera.franja, 
+                                  conf.level = 0.95, correct = FALSE)
+Li.primera.pequeña <- test.primera.pequeña$conf.int[1]
+Ls.primera.pequeña <- test.primera.pequeña$conf.int[2]
+
+# Segunda franja (Tarde)
+test.segunda.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.sf, 
+                                  total.muestra.pequeña.segunda.franja, 
+                                  conf.level = 0.95, correct = FALSE)
+Li.segunda.pequeña <- test.segunda.pequeña$conf.int[1]
+Ls.segunda.pequeña <- test.segunda.pequeña$conf.int[2]
+
+# --- Graficar el diagrama de intervalos de confianza ---
+# Puntos y valores de los intervalos
+x <- c(1, 1, 1.1, 1.1, 2, 2, 2.1, 2.1)
+y <- c(Li.primera.grande, Ls.primera.grande, 
+       Li.segunda.grande, Ls.segunda.grande, 
+       Li.primera.pequeña, Ls.primera.pequeña, 
+       Li.segunda.pequeña, Ls.segunda.pequeña)
+
+# Crear el gráfico
+plot(x, y, xlim = c(0.5, 2.5), ylim = c(0, max(y) + 0.1), 
+     xlab = "1 = Muestras grandes, 2 = Muestras pequeñas", 
+     ylab = "Proporción de Parejas Homosexuales", 
+     main = "Intervalos de Confianza por Franja")
+
+# Agregar líneas para los intervalos
+lines(c(1, 1), c(Li.primera.grande, Ls.primera.grande))
+lines(c(1.1, 1.1), c(Li.segunda.grande, Ls.segunda.grande), col = "red")
+lines(c(2, 2), c(Li.primera.pequeña, Ls.primera.pequeña))
+lines(c(2.1, 2.1), c(Li.segunda.pequeña, Ls.segunda.pequeña), col = "red")
+
+# Etiquetas para identificar franjas
+text(0.7, max(y) - 0.1, label = "Primera Franja (Grande)")
+text(1.3, max(y) - 0.1, label = "Segunda Franja (Grande)", col = "red")
+text(1.7, max(y) - 0.2, label = "Primera Franja (Pequeña)")
+text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
+
+##Pagina 19...
