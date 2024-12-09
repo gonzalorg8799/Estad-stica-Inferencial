@@ -285,4 +285,152 @@ text(1.3, max(y) - 0.1, label = "Segunda Franja (Grande)", col = "red")
 text(1.7, max(y) - 0.2, label = "Primera Franja (Pequeña)")
 text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
 
-##Pagina 19...
+#---------------------------Parejas Heterosexuales------------------------------------
+##Proporciones muestrales
+p.primera.franja.heterosexuales=total.parejas.heterosexuales.primera.franja/length(solicitudes.primera.muestra.grande.transformadas)
+p.segunda.franja.heterosexuales=total.parejas.heterosexuales.segunda.franja/length(solicitudes.segunda.muestra.grande.transformadas)
+
+
+## Intervalos de confianza
+prop.test(total.parejas.heterosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
+
+prop.test(total.parejas.heterosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
+
+
+
+#####################Muestras Pequeñas################################
+##como necesito coger solo las parejas validas(que tengan solicitudes mayores a 0) tengo que volver a hacer las muestras pequeñas pero solo con datos validos
+
+total.parejas.heterosexuales.muestra.pequeña.pf<-sum(parejas.heterosexuales.muestra.pequeña.pf)
+total.parejas.heterosexuales.muestra.pequeña.sf<-sum(parejas.heterosexuales.muestra.pequeña.sf)
+
+##Proporciones muestrales
+p.primera.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja
+p.segunda.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja
+
+##Intervalos de confianza
+prop.test(total.parejas.heterosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)
+prop.test(total.parejas.heterosexuales.muestra.pequeña.sf,total.muestra.pequeña.segunda.franja,conf.level = 0.95, correct = FALSE)
+
+
+
+# --- Intervalos de confianza para muestras grandes ---
+# Primera franja (Mañana)
+ic.grande.primera <- prop.test(total.parejas.heterosexuales.primera.franja, 
+                               total.primera.franja.grande, 
+                               conf.level = 0.95, correct = FALSE)
+lim.inf.grande.primera <- ic.grande.primera$conf.int[1]
+lim.sup.grande.primera <- ic.grande.primera$conf.int[2]
+
+# Segunda franja (Tarde)
+ic.grande.segunda <- prop.test(total.parejas.heterosexuales.segunda.franja, 
+                               total.segunda.franja.grande, 
+                               conf.level = 0.95, correct = FALSE)
+lim.inf.grande.segunda <- ic.grande.segunda$conf.int[1]
+lim.sup.grande.segunda <- ic.grande.segunda$conf.int[2]
+
+# --- Intervalos de confianza para muestras pequeñas ---
+# Primera franja (Mañana)
+ic.pequeña.primera <- prop.test(total.parejas.heterosexuales.muestra.pequeña.pf, 
+                                total.muestra.pequeña.primera.franja, 
+                                conf.level = 0.95, correct = FALSE)
+lim.inf.pequeña.primera <- ic.pequeña.primera$conf.int[1]
+lim.sup.pequeña.primera <- ic.pequeña.primera$conf.int[2]
+
+# Segunda franja (Tarde)
+ic.pequeña.segunda <- prop.test(total.parejas.heterosexuales.muestra.pequeña.sf, 
+                                total.muestra.pequeña.segunda.franja, 
+                                conf.level = 0.95, correct = FALSE)
+lim.inf.pequeña.segunda <- ic.pequeña.segunda$conf.int[1]
+lim.sup.pequeña.segunda <- ic.pequeña.segunda$conf.int[2]
+
+# --- Graficar el diagrama de intervalos de confianza ---
+# Puntos y valores de los intervalos
+x <- c(1, 1, 1.1, 1.1, 2, 2, 2.1, 2.1)
+y <- c(lim.inf.grande.primera, lim.sup.grande.primera, 
+       lim.inf.grande.segunda, lim.sup.grande.segunda, 
+       lim.inf.pequeña.primera, lim.sup.pequeña.primera, 
+       lim.inf.pequeña.segunda, lim.sup.pequeña.segunda)
+
+# Crear el gráfico
+plot(x, y, xlim = c(0.5, 2.5), ylim = c(0, max(y) + 0.1), 
+     xlab = "1 = Muestras grandes, 2 = Muestras pequeñas", 
+     ylab = "Proporción de Parejas Heterosexuales", 
+     main = "Intervalos de Confianza por Franja")
+
+# Agregar líneas para los intervalos
+lines(c(1, 1), c(lim.inf.grande.primera, lim.sup.grande.primera))
+lines(c(1.1, 1.1), c(lim.inf.grande.segunda, lim.sup.grande.segunda), col = "red")
+lines(c(2, 2), c(lim.inf.pequeña.primera, lim.sup.pequeña.primera))
+lines(c(2.1, 2.1), c(lim.inf.pequeña.segunda, lim.sup.pequeña.segunda), col = "red")
+
+# Etiquetas para identificar franjas
+text(0.7, max(y) - 0.1, label = "Primera Franja (Grande)")
+text(1.3, max(y) - 0.1, label = "Segunda Franja (Grande)", col = "red")
+text(1.7, max(y) - 0.2, label = "Primera Franja (Pequeña)")
+text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
+
+
+
+###---------------Contrastes de Hipotesis---------------
+##medias muestrales
+mean(solicitudes.primera.muestra.grande.transformadas)
+mean(solicitudes.segunda.muestra.grande.transformadas)
+
+#𝐻0: 𝜇primeraFranja = 𝜇SegundaFranja vs 𝐻𝐴: 𝜇PrimeraFranja != 𝜇SegundaFranja
+z.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, alternative="two.sided", sigma.x=sd(solicitudes.primera.muestra.grande.transformadas), sigma.y=sd(solicitudes.segunda.muestra.grande.transformadas), conf.level=0.95)
+#Como p-valor<0.05, se puede aceptar la hipótesis alternativa de que hay diferencia significativa entre
+#las medias
+
+# 𝐻0: 𝜇PrimeraFranja = 𝜇SegundaFranja vs 𝐻𝐴: 𝜇PrimeraFranja < 𝜇SegundaFranja
+z.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, alternative="less", sigma.x=sd(solicitudes.primera.muestra.grande.transformadas), sigma.y=sd(solicitudes.segunda.muestra.grande.transformadas), conf.level=0.95)
+#Como p-valor<0.05 entoces se puede aceptar la hipotesis alternativa de que la media poblacional de la segunda franja es mayor que la de la segunda
+#como ocurre en las medias muestrales
+
+##TEST DE LEVENE
+dP=data.frame(SOLICITUDES=solicitudes.primera.muestra.grande.transformadas, FRANJA=rep(c("Primera"),times=length(solicitudes.primera.muestra.grande.transformadas)))
+dS=data.frame(SOLICITUDES=solicitudes.segunda.muestra.grande.transformadas, FRANJA=rep(c("Segunda"),times=length(solicitudes.segunda.muestra.grande.transformadas)))
+d=rbind(dP,dS)
+leveneTest(d$SOLICITUDES,d$FRANJA)
+
+#Como el p-valor(0.3616) es superior a 0.05 se puede suponer que las varianzas son iguales
+
+##muestras pequeñas
+mean(solicitudes.primera.muestra.pequeña.transformadas)
+mean(solicitudes.segunda.muestra.pequeña.transformadas)
+#como la media muestral de la segunda franja es superior a la de la primera franja planteamos la hipotesis de que la media 
+#poblacional tambien lo es
+dP=data.frame(SOLICITUDES=solicitudes.primera.muestra.pequeña.transformadas, FRANJA=rep(c("Primera"),times=20))
+dS=data.frame(SOLICITUDES=solicitudes.segunda.muestra.pequeña.transformadas, FRANJA=rep(c("Segunda"),times=20))
+d=rbind(dP,dS)
+leveneTest(d$SOLICITUDES,d$FRANJA)
+#Como el p-valor(0.6958) es superior a 0.05 se puede suponer que las varianzas son iguales por lo que realizaremos el contraste de hipotesis con t.test
+
+# 𝐻0: 𝜇PrimeraFranja = 𝜇SegundaFranja vs 𝐻𝐴: 𝜇PrimeraFranja < 𝜇SegundaFranja
+t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.muestra.pequeña.transformadas, alternative = "less", var.equal = TRUE, sigma.x=sd(solicitudes.primera.muestra.pequeña.transformadas),sigma.y=sd(solicitudes.segunda.muestra.pequeña.transformadas),conf.level = 0.95)
+#como p-valor<0.05 se puede aceptar la hipotesis alternativa tambien en el caso de las muestras pequeñas
+
+
+#--------------Diferencia de proporciones de solicitudes de se parejas homosexuales----------------
+(p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/sum(solicitudes.primera.muestra.grande.transformadas))
+(p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/sum(solicitudes.segunda.muestra.grande.transformadas))
+#como las proporciones son muestras muy parecidas primero hay que comprobar si hay alguna diferencia
+#𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera ≠ 𝑝HomoSegunda
+longitud.primera.muestra.grande=length(solicitudes.primera.muestra.grande.transformadas)
+longitud.segunda.muestra.grande=length(solicitudes.segunda.muestra.grande.transformadas)
+(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
+#como el p-valor(0.01986) es menor que 0.05 se acepta la hipotesis alternativa, asi que hay una diferencia significativa entre las proporciones
+
+#𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera < 𝑝HomoSegunda
+(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="less", conf.level=0.95, correct=FALSE))
+#como el p-valor<0.05 entonces se acepta la hipotesis alternativa de que la proporcion de parejas homosexuales
+#es mayor en la segunda franja que en la primera
+
+##muestras pequeñas
+(p.primera.franja.homosexuales.muestra.pequeña=total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
+(p.segunda.franja.homosexuales.muestra.pequeña=total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
+
+#𝐻0: 𝑝homoPrimera = 𝑝homoSegunda vs 𝐻𝐴: 𝑝homoPrimera ≠ 𝑝homoSegunda
+(prop.test(c(total.parejas.homosexuales.muestra.pequeña.pf, total.parejas.homosexuales.muestra.pequeña.sf),c(total.muestra.pequeña.primera.franja, total.muestra.pequeña.segunda.franja)))
+#como p-valor>0.05 no hay evidencias de que haya una diferencia significativa entre la proporcion de parejas homosexuales en la primera y segunda franja
+
