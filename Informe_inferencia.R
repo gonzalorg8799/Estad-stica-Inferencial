@@ -70,16 +70,44 @@ qqPlot(solicitudes.primera.muestra.grande.transformadas, main = "Primera_franja"
 qqPlot(solicitudes.segunda.muestra.grande.transformadas, main = "Segunda_franja")
 
 ##histogramas
-L=c(34,80,200,300,581)
-hist(solicitudes.primera.muestra.grande.transformadas, breaks = L, main="Primera franja (muestra pequeña)",
-     ylim=c(0,1000), ylab = "", xlab = "Solicitudes", freq = FALSE)
-curve(dnorm(x,mean(solicitudes.primera.muestra.grande.transformadas),sd(solicitudes.primera.muestra.grande.transformadas)),0,600,
-      add=TRUE, col="red")
-hist(solicitudes.segunda.muestra.pequeña, breaks = L, main="Segunda franja (muestra pequeña)",
-     ylim=c(0,0.4), ylab = "", xlab = "Solicitudes", freq = FALSE)
-curve(dnorm(x,mean(solicitudes.segunda.muestra.pequeña),sd(solicitudes.segunda.muestra.pequeña)),0,12,
-      add=TRUE, col="red")
+# Definir los límites de los histogramas basados en los datos transformados
+L1 <- seq(min(solicitudes.primera.muestra.grande.transformadas), max(solicitudes.primera.muestra.grande.transformadas), length.out = 10)
+L2 <- seq(min(solicitudes.segunda.muestra.grande.transformadas), max(solicitudes.segunda.muestra.grande.transformadas), length.out = 10)
 
+# Histograma para Primera y segunda franja de las muestras grandes
+par(mfrow=c(1,2))
+hist(solicitudes.primera.muestra.grande.transformadas, breaks = L1, main = "Primera franja (muestra grande transformada)",
+     ylim = c(0, 1), ylab = "", xlab = "Solicitudes", freq = FALSE)
+curve(dnorm(x, mean(solicitudes.primera.muestra.grande.transformadas), sd(solicitudes.primera.muestra.grande.transformadas)), 
+      from = min(solicitudes.primera.muestra.grande.transformadas), 
+      to = max(solicitudes.primera.muestra.grande.transformadas), 
+      add = TRUE, col = "red")
+
+hist(solicitudes.segunda.muestra.grande.transformadas, breaks = L2, main = "Segunda franja (muestra grande transformada)",
+     ylim = c(0, 1), ylab = "", xlab = "Solicitudes", freq = FALSE)
+curve(dnorm(x, mean(solicitudes.segunda.muestra.grande.transformadas), sd(solicitudes.segunda.muestra.grande.transformadas)), 
+      from = min(solicitudes.segunda.muestra.grande.transformadas), 
+      to = max(solicitudes.segunda.muestra.grande.transformadas), 
+      add = TRUE, col = "red")
+
+
+L1 <- seq(min(solicitudes.primera.muestra.pequeña.transformadas), max(solicitudes.primera.muestra.pequeña.transformadas), length.out = 10)
+L2 <- seq(min(solicitudes.segunda.muestra.pequeña.transformadas), max(solicitudes.segunda.muestra.pequeña.transformadas), length.out = 10)
+# Histograma para la segunda franja (muestra pequeña)
+par(mfrow=c(1,2))
+hist(solicitudes.primera.muestra.pequeña.transformadas, breaks = L1, main = "Primera franja (muestra pequeña)",
+     ylim = c(0, 1), ylab = "", xlab = "Solicitudes", freq = FALSE)
+curve(dnorm(x, mean(solicitudes.primera.muestra.pequeña.transformadas), sd(solicitudes.primera.muestra.pequeña.transformadas)), 
+      from = min(solicitudes.primera.muestra.pequeña.transformadas), 
+      to = max(solicitudes.primera.muestra.pequeña.transformadas), 
+      add = TRUE, col = "red")
+
+hist(solicitudes.segunda.muestra.pequeña.transformadas, breaks = L2, main = "Segunda franja (muestra pequeña)",
+     ylim = c(0, 1), ylab = "", xlab = "Solicitudes", freq = FALSE)
+curve(dnorm(x, mean(solicitudes.segunda.muestra.pequeña.transformadas), sd(solicitudes.segunda.muestra.pequeña.transformadas)), 
+      from = min(solicitudes.segunda.muestra.pequeña.transformadas), 
+      to = max(solicitudes.segunda.muestra.pequeña.transformadas), 
+      add = TRUE, col = "red")
 #Intervalos de confianza para la media
 install.packages("BSDA")
 library(BSDA)
@@ -467,3 +495,4 @@ wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segund
 #𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera < MsolicitudesSegunda
 wilcox.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.muestra.pequeña.transformadas, paired = FALSE, alternative = "less", conf.level = 0.95, exact = FALSE)
 #Como el pvalor(0.04544) < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
+
