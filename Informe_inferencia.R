@@ -416,8 +416,6 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 (p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/sum(solicitudes.segunda.muestra.grande.transformadas))
 #como las proporciones son muestras muy parecidas primero hay que comprobar si hay alguna diferencia
 #𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera ≠ 𝑝HomoSegunda
-longitud.primera.muestra.grande=length(solicitudes.primera.muestra.grande.transformadas)
-longitud.segunda.muestra.grande=length(solicitudes.segunda.muestra.grande.transformadas)
 (prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
 #como el p-valor(0.01986) es menor que 0.05 se acepta la hipotesis alternativa, asi que hay una diferencia significativa entre las proporciones
 
@@ -434,3 +432,38 @@ longitud.segunda.muestra.grande=length(solicitudes.segunda.muestra.grande.transf
 (prop.test(c(total.parejas.homosexuales.muestra.pequeña.pf, total.parejas.homosexuales.muestra.pequeña.sf),c(total.muestra.pequeña.primera.franja, total.muestra.pequeña.segunda.franja)))
 #como p-valor>0.05 no hay evidencias de que haya una diferencia significativa entre la proporcion de parejas homosexuales en la primera y segunda franja
 
+
+#--------------Diferencia de proporciones de solicitudes de se parejas heterosexuales----------------
+(p.primera.franja.heterosexuales=total.parejas.heterosexuales.primera.franja/sum(solicitudes.primera.muestra.grande.transformadas))
+(p.segunda.franja.heterosexuales=total.parejas.heterosexuales.segunda.franja/sum(solicitudes.segunda.muestra.grande.transformadas))
+
+#𝐻0: 𝑝heteroPrimera =𝑝heteroSegunda vs 𝐻𝐴: 𝑝heteroPrimera ≠𝑝heteroSegunda
+(prop.test(c(total.parejas.heterosexuales.primera.franja, total.parejas.heterosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
+#Como el p-valor(0.0003363)<0.05 entonces se acepta la hipotesis alternativa de que hay diferencia significativa entre las proporciones
+
+#𝐻0: pHeteroPrimera = pHeteroSegunda vs 𝐻𝐴: pHeteroPrimera > 𝑝HeteroSegunda
+(prop.test(c(total.parejas.heterosexuales.primera.franja, total.parejas.heterosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="greater", conf.level=0.95, correct=FALSE))
+#Como el p-valor(0.0001681)<0.05 entonces se acepta la hipotesis alternativa de que la proporcion de parejas heterosexuales
+#en la primera franja es mayor que en la segunda franja
+
+
+##--------------------------Realizar contrastes de hipotesis no paremetricos------------------
+#Contrastes de hipotesis sobre la diferencia de medianas
+#MUESTRAS GRANDES
+(median(solicitudes.primera.muestra.grande.transformadas))
+(median(solicitudes.segunda.muestra.grande.transformadas))
+#𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera ≠ MsolicitudesSegunda
+wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, paired = FALSE, alternative = "two.sided", conf.level = 0.95, exact = FALSE)
+#Como el p-valor(0.02) < 0.05 se puede aceptar la hipotesis alternativa de que hay diferencia significativa entre las medianas
+
+#𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera < MsolicitudesSegunda
+wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, paired = FALSE, alternative = "less", conf.level = 0.95, exact = FALSE)
+#Como el pvalor(0.01037) < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
+
+
+#MUESTRAS PEQUEÑAS
+(median(solicitudes.primera.muestra.pequeña.transformadas))
+(median(solicitudes.segunda.muestra.pequeña.transformadas))
+#𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera < MsolicitudesSegunda
+wilcox.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.muestra.pequeña.transformadas, paired = FALSE, alternative = "less", conf.level = 0.95, exact = FALSE)
+#Como el pvalor(0.04544) < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
