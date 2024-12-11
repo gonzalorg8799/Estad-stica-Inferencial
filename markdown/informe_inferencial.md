@@ -8,7 +8,7 @@
 **Ingeniería en Sistemas de la Información**
 
 ### Fecha:
-**30/10/2024**
+**10/12/2024**
 
 </br>
 </br>
@@ -114,6 +114,7 @@ Se ha realizado una comprobación visual para cada una de las muestras, obtenien
 <p style='text-align:center;'>Figura 1</p>
 </div>
 </br>
+
 <div>
 <p style = 'text-align:center;'>
 <img src="histogramas-muestras-pequeñas.png" width="">
@@ -122,3 +123,51 @@ Se ha realizado una comprobación visual para cada una de las muestras, obtenien
 </div>
 <br>
 Tambien se han obtenido los diagramas QQ con región de aceptación del 95% que se representan en las figuras 3 y 4
+<br>
+<div>
+<p style = 'text-align:center;'>
+<img src="qqplot-muestra grande.png" width="">
+</p>
+<p style='text-align:center;'>Figura 3</p>
+</div>
+<br>
+
+<br>
+<div>
+<p style = 'text-align:center;'>
+<img src="qqplot-muestra pequeña.png" width="">
+</p>
+<p style='text-align:center;'>Figura 4</p>
+</div>
+<br>
+
+En la tabla 1 se muestran los resultados de los test de normalidad realizados despues de las transformaciones de los datos para cada una de las muestras
+
+| Test de Normalidad | Primera franja Muestra Grande| Segunda franja Muestra Grande | Primera franja Muestra Pequeña | Segunda franja Muestra Pequeña |
+|------------------|----------------|----------------|-------|-------------|
+| <strong>Shapiro-Wilk</strong> | p-valor= 0.08548| p-valor= 0.3255| p-valor= 0.2182| p-valor= 0.337|
+
+
+Tanto en el caso de las muestras pequeñas como el de las muestras grandes, se ha superado el test de Shapiro-wilk, para un nivel de significación de 0,05 pues los p-valores superan dicho valor. 
+
+### <strong>Análisis de homogeneidad de varianzas</strong><a name="homogeneidad"></a>
+Para evaluar si las varianzas de las poblaciones son iguales o diferentes, se llevó a cabo un test de Levene de homogeneidad de varianzas. En el caso de las muestras grandes, se obtuvo un p-valor = 0.3616, mientras que para las muestras pequeñas el p-valor fue = 0.5515. Dado que ambos valores son mayores al nivel de significación habitual de 0.05, se puede asumir que las varianzas de las franjas Primera y Segunda son iguales en ambos casos.
+### <strong> Intervalos de confianza</strong><a name="IC"></a>
+En la tabla 2 se muestran los resultados del cálculo de los intervalos de confianza utilizando las
+muestras grandes, con una confianza del 95%, es decir, con una significación de 0.05. Se han
+calculado intervalos para la media poblacional de las solicitudes de las parejas de cada franja, y para las
+proporciones de diferentes tipos de parejas:
+
+- Parejas Homosexuales
+- Parejas Heterosexuales
+
+| Medidas | Primera Franja | Segunda Franja |
+|---------|-----------------|----------------|
+| Tamaño muestra | 63 | 63 |
+| Media (muestra) | 185.1746 | 254.127 |
+| Mediana (muestra) | 141 | 186 |
+| IC (95%) media | | |
+| Prop. Parejas Homosexuales (muestra) | | |
+| IC (95%) Prop. Parejas Homosexuales | | |
+| Prop. Parejas Homosexuales (muestra) | | |
+| IC (95%) Prop. Parejas Homosexuales | | |

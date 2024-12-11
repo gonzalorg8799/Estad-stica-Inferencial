@@ -14,6 +14,11 @@ franja=uniones.con.franja$franja
 solicitudes.primera <- as.numeric(uniones.primera.franja$Solicitudes.presentadas)
 solicitudes.segunda <- as.numeric(uniones.segunda.franja$Solicitudes.presentadas)
 
+mean(solicitudes.primera.muestra.grande)
+mean(solicitudes.segunda.muestra.grande)
+
+median(solicitudes.primera.muestra.grande)
+median(solicitudes.segunda)
 ##Longitud de las solicitudes de cada franja
 length(uniones.primera.franja)
 length(uniones.segunda.franja)
@@ -66,9 +71,11 @@ solicitudes.segunda.muestra.pequeña.transformadas=log(solicitudes.segunda.muest
 jarque.bera.test(solicitudes.primera.muestra.grande.transformadas)
 jarque.bera.test(solicitudes.segunda.muestra.grande.transformadas)
 par(mfrow=c(1,2))
-qqPlot(solicitudes.primera.muestra.grande.transformadas, main = "Primera_franja")
-qqPlot(solicitudes.segunda.muestra.grande.transformadas, main = "Segunda_franja")
-
+qqPlot(solicitudes.primera.muestra.grande.transformadas, main = "Primera franja (muestra grande)")
+qqPlot(solicitudes.segunda.muestra.grande.transformadas, main = "Segunda franja (muestra grande)")
+par(mfrow=c(1,2))
+qqPlot(solicitudes.primera.muestra.pequeña.transformadas, main= "Primera franja (muestra pequeña)")
+qqPlot(solicitudes.segunda.muestra.pequeña.transformadas, main="Segunda franja (muestra pequeña")
 ##histogramas
 # Definir los límites de los histogramas basados en los datos transformados
 L1 <- seq(min(solicitudes.primera.muestra.grande.transformadas), max(solicitudes.primera.muestra.grande.transformadas), length.out = 10)
@@ -108,6 +115,16 @@ curve(dnorm(x, mean(solicitudes.segunda.muestra.pequeña.transformadas), sd(soli
       from = min(solicitudes.segunda.muestra.pequeña.transformadas), 
       to = max(solicitudes.segunda.muestra.pequeña.transformadas), 
       add = TRUE, col = "red")
+
+##Saphiro-wilk
+shapiro.test(solicitudes.primera.muestra.grande.transformadas)
+shapiro.test(solicitudes.segunda.muestra.grande.transformadas)
+shapiro.test(solicitudes.primera.muestra.pequeña.transformadas)
+shapiro.test(solicitudes.segunda.muestra.pequeña.transformadas)
+
+##Jarque-bera
+jarque.bera.test(solicitudes.primera.muestra.grande.transformadas)
+jarque.bera.test(solicitudes.segunda.muestra.grande.transformadas)
 #Intervalos de confianza para la media
 install.packages("BSDA")
 library(BSDA)
