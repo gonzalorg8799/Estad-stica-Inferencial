@@ -166,7 +166,7 @@ proporciones de diferentes tipos de parejas:
 | Tamaño muestra | 63 | 63 |
 | Media (muestra) | 185.1746 | 254.127 |
 | Mediana (muestra) | 141 | 186 |
-| IC (95%) media | | |
+| IC (95%) media |0.9419 | 0.9825|
 | Prop. Parejas Homosexuales (muestra) | | |
 | IC (95%) Prop. Parejas Homosexuales | | |
 | Prop. Parejas Homosexuales (muestra) | | |
