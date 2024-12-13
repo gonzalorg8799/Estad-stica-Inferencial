@@ -239,15 +239,19 @@ total.segunda.franja.grande<-sum(solicitudes.segunda.muestra.grande.transformada
 total.primera.franja.pequeña<-sum(solicitudes.primera.muestra.pequeña.transformadas)
 total.segunda.franja.pequeña<- sum(solicitudes.segunda.muestra.pequeña.transformadas)
 #proporciones muestrales
-p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/length(solicitudes.primera.muestra.grande.transformadas)
-p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/length(solicitudes.segunda.muestra.grande.transformadas)
+(p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/total.primera.franja.grande)
+10^0.2179212
+(p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/total.primera.franja.grande)
+10^0.3200837
 
 
 ## Intervalos de confianza
 prop.test(total.parejas.homosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
-
+10^0.1755016
+10^0.2672701
 prop.test(total.parejas.homosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
-
+10^0.2519388
+10^0.3500906
 
 
 #####################Muestras Pequeñas################################
@@ -265,13 +269,18 @@ total.parejas.homosexuales.muestra.pequeña.pf<-sum(parejas.homosexuales.muestra
 total.parejas.homosexuales.muestra.pequeña.sf<-sum(parejas.homosexuales.muestra.pequeña.sf)
    
 ##Proporciones muestrales
-p.primera.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja
-p.segunda.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja
+(p.primera.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
+10^0.205378
+(p.segunda.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
+10^0.234586
 
 ##Intervalos de confianza
 prop.test(total.parejas.homosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)
+10^0.1217433
+10^0.3251938
 prop.test(total.parejas.homosexuales.muestra.pequeña.sf,total.muestra.pequeña.segunda.franja,conf.level = 0.95, correct = FALSE)
-
+10^0.1706515
+10^0.3134213
 
 
 # --- Intervalos de confianza para muestras grandes ---
@@ -332,14 +341,18 @@ text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
 
 #---------------------------Parejas Heterosexuales------------------------------------
 ##Proporciones muestrales
-p.primera.franja.heterosexuales=total.parejas.heterosexuales.primera.franja/length(solicitudes.primera.muestra.grande.transformadas)
-p.segunda.franja.heterosexuales=total.parejas.heterosexuales.segunda.franja/length(solicitudes.segunda.muestra.grande.transformadas)
-
+(p.primera.franja.heterosexuales=total.parejas.heterosexuales.primera.franja/total.primera.franja.grande)
+10^0.967996
+(p.segunda.franja.heterosexuales=total.parejas.heterosexuales.segunda.franja/total.primera.franja.grande)
+10^0.9601044
 
 ## Intervalos de confianza
 prop.test(total.parejas.heterosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
-
+10^0.9419117
+10^0.9825839
 prop.test(total.parejas.heterosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
+10^0.8584248
+10^0.9244492
 
 
 
@@ -350,8 +363,10 @@ total.parejas.heterosexuales.muestra.pequeña.pf<-sum(parejas.heterosexuales.mue
 total.parejas.heterosexuales.muestra.pequeña.sf<-sum(parejas.heterosexuales.muestra.pequeña.sf)
 
 ##Proporciones muestrales
-p.primera.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja
-p.segunda.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja
+(p.primera.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
+10^0.794622
+(p.segunda.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
+10^0.7879987
 
 ##Intervalos de confianza
 prop.test(total.parejas.heterosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)

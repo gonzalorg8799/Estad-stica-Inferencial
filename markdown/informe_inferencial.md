@@ -167,7 +167,21 @@ proporciones de diferentes tipos de parejas:
 | Media (muestra) | 185.1746 | 254.127 |
 | Mediana (muestra) | 141 | 186 |
 | IC (95%) media |0.9419 | 0.9825|
-| Prop. Parejas Homosexuales (muestra) | | |
-| IC (95%) Prop. Parejas Homosexuales | | |
-| Prop. Parejas Homosexuales (muestra) | | |
-| IC (95%) Prop. Parejas Homosexuales | | |
+| Prop. Parejas Heterosexuales (muestra) | 9.28 | 9.12 |
+| IC (95%) Prop. Parejas Heterosexuales | [8.74, 9.60]| [7.21, 8.40] |
+| Prop. Parejas Homosexuales (muestra) | 1.65 | 2.08 |
+| IC (95%) Prop. Parejas Homosexuales | [1.49, 1.85] | [1.78, 2.23] |
+
+<br>
+En la tabla 3 se muestran los mismos cálculos, pero al utilizar las muestras pequeñas
+
+| Medidas | Primera Franja | Segunda Franja |
+|---------|-----------------|----------------|
+| Tamaño muestra | 63 | 63 |
+| Media (muestra) | 185.1746 | 254.127 |
+| Mediana (muestra) | 141 | 186 |
+| IC (95%) media |0.9419 | 0.9825|
+| Prop. Parejas Heterosexuales (muestra) | 9.28 | 9.12 |
+| IC (95%) Prop. Parejas Heterosexuales | [8.74, 9.60]| [7.21, 8.40] |
+| Prop. Parejas Homosexuales (muestra) | 1.65 | 2.08 |
+| IC (95%) Prop. Parejas Homosexuales | [1.49, 1.85] | [1.78, 2.23] |
