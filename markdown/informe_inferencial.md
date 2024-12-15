@@ -41,15 +41,18 @@
 -   1.2 [Objetivo](objetivo)
 -   1.3 [alcance](alcance)
 2. [Metodología](metodologia)
--   2.1 [Origen de los datos](origen)
--   2.2 [Herramientas](herramientas)
--   2.3 [Diseño](diseño)
+-   2.1 [Poblaciones y propiedad estudiada](poblaciones)
+-   2.2 [Muestras y origen de los datos](origen)
+-   2.3 [Normalidad de los datos](normalidad)
+-   2.4 [Hipótesis](hipotesis)
+-   2.5 [Herramientas](herramientas)
 3. [Resultados](resultados)
--   3.1 [Medidas estadístcas](medidas)
--   3.2 [Tablas de contingencia](tablas)
--   3.3 [Diagramas](diagramas)
+-   3.1 [Normalidad de los datos](normalidadDatos)
+-   3.2 [Análisis de homogeneidad de varianzas](homogeneidad)
+-   3.3 [Intervalos de confianza](IC)
+-   3.4 [Contrastes de hipótesis](hipotesis2)
 4. [Análisis de resultados](analisis)
-5. [Conclusión](conclusion)
+5. [Conclusiones](conclusiones)
 
 ## <u> Introducción </u><a name="introduccion"></a>
 
@@ -167,10 +170,10 @@ proporciones de diferentes tipos de parejas:
 | Media (muestra) | 185.1746 | 254.127 |
 | Mediana (muestra) | 141 | 186 |
 | IC (95%) media |0.9419 | 0.9825|
-| Prop. Parejas Heterosexuales (muestra) | 9.28 | 9.12 |
-| IC (95%) Prop. Parejas Heterosexuales | [8.74, 9.60]| [7.21, 8.40] |
-| Prop. Parejas Homosexuales (muestra) | 1.65 | 2.08 |
-| IC (95%) Prop. Parejas Homosexuales | [1.49, 1.85] | [1.78, 2.23] |
+| Prop. Parejas Heterosexuales (muestra) | 2.63 | 2.61 |
+| IC (95%) Prop. Parejas Heterosexuales | [2.32, 2.99]| [2.17, 2.77] |
+| Prop. Parejas Homosexuales (muestra) | 1.24 | 44.83 |
+| IC (95%) Prop. Parejas Homosexuales | [1.16, 1.35] | [1.25, 1.47] |
 
 <br>
 En la tabla 3 se muestran los mismos cálculos, pero al utilizar las muestras pequeñas
@@ -178,10 +181,86 @@ En la tabla 3 se muestran los mismos cálculos, pero al utilizar las muestras pe
 | Medidas | Primera Franja | Segunda Franja |
 |---------|-----------------|----------------|
 | Tamaño muestra | 20 | 20 |
-| Media (muestra) | 1.60 | 1.71 |
-| Mediana (muestra) | 141 | 186 |
+| Media (muestra) | 25.11 | 38.90 |
+| Mediana (muestra) | 16.59 | 40.73 |
 | IC (95%) media |0.9419 | 0.9825|
-| Prop. Parejas Heterosexuales (muestra) | 9.28 | 9.12 |
-| IC (95%) Prop. Parejas Heterosexuales | [8.74, 9.60]| [7.21, 8.40] |
-| Prop. Parejas Homosexuales (muestra) | 1.60 | 1.71 |
-| IC (95%) Prop. Parejas Homosexuales | [1.32, 2.11] | [1.48, 2.05] |
+| Prop. Parejas Heterosexuales (muestra) | 5.88 | 5.48 |
+| IC (95%) Prop. Parejas Heterosexuales | [3.86, 7.70]| [3.63, 7.30] |
+| Prop. Parejas Homosexuales (muestra) | 1.69 | 2.21 |
+| IC (95%) Prop. Parejas Homosexuales | [1.29, 2.58] | [1.58, 3.35] |
+
+<br>
+En las figuras 5 a 7 se muestran los intervalos de confianza para la media, la proporcion de parejas homosexuales y la proporcion de parejas heterosexuales
+<div>
+<p style = 'text-align:center;'>
+<img src="proporcion.media.png" width="">
+</p>
+<p style='text-align:center;'>Figura 5</p>
+</div>
+<br>
+<div>
+<p style = 'text-align:center;'>
+<img src="proporcion.heterosexuales.png" width="">
+</p>
+<p style='text-align:center;'>Figura 6</p>
+</div>
+<br>
+<div>
+<p style = 'text-align:center;'>
+<img src="proporcion.homosexuales.png" width="">
+</p>
+<p style='text-align:center;'>Figura 7</p>
+</div>
+<br>
+
+### <strong> Contrastes de hipótesis</strong><a name="hipotesis2"></a>
+En la tabla 4 se muestran los resultados que se han obtenido, utilizando las muestras grandes, en
+los contrastes de hipótesis que se han planteado sobre la diferencia entre las medias y medianas
+poblacionales de las solicitudes de uniones de ambas franjas, y entre las proporciones de solicitudes de uniones homosexuales y heteresexuales.
+
+<p style='text-align:center;'>tabla 4 Contraste de hipótesis usando muestras grandes</p>
+
+| Hipótesis nula (H0) | Hipótesis alternariva (HA) | P-valor|
+|----------------------|------------------------|---------------|
+| Medias iguales | Media de la primera franja mayor que la media de la segunda| 0.00000000000000022 |
+| Medianas iguales | Mediana de la primera franja menor que la mediana de la segunda franja| 0.00000000000000022|
+| Porporciones de heterosexuales iguales | Proporciones de heterosexuales diferentes |  0.4204|
+| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.1609 |
+<br>
+<p style='text-align:center;'>tabla 5 Contraste de hipótesis usando muestras pequeñas</p>
+
+| Hipótesis nula (H0) | Hipótesis alternariva (HA) | P-valor|
+|----------------------|------------------------|---------------|
+| Medias iguales | Media de la primera franja menor que la media de la segunda| 0.02403 |
+| Medianas iguales | Mediana de la primera franja menor que la mediana de la segunda franja| 0.02825 |
+| Porporciones de heterosexuales iguales | Proporciones de heterosexuales diferentes |  1 |
+| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.5049 |
+
+<br>
+
+## <u> Análisis de resultados</u><a name="analisis"></a>
+A partir de los resultados obtenidos y las pruebas realizadas, se han identificado las siguientes diferencias significativas entre los grupos de datos estudiados. A continuación, se interpretan los resultados resaltando los contrastes entre las franjas temporales analizadas (2010-2016 y 2017-2023) y haciendo referencia a las tablas y figuras presentadas en el apartado de resultados.
+
+<u>Medias y medianas de las solicitudes</u>
+
+Como se observa en la tabla 2, la media de solicitudes en la franja 2010-2016 fue de 185.17, mientras que en la franja 2017-2023 esta aumentó a 254.13, lo cual refleja un incremento notable. Los intervalos de confianza al 95% (figura 5) muestran que no hay solapamiento entre ambas franjas, confirmando la diferencia significativa.
+
+En cuanto a las medianas, la tabla 2 y los intervalos de confianza (figura 6) también reflejan una diferencia significativa, con valores de 141 para la primera franja y 186 para la segunda.
+
+Al realizar un contraste de hipótesis paramétrico, como se detalla en la tabla 4, se obtuvo un p-valor de 0.00000000000000022, mucho menor al nivel de significación de 0.05, lo que confirma que la media poblacional de la segunda franja es significativamente mayor. Resultados similares se observan para las medianas con un p-valor igual.
+
+<u>Proporción de uniones homosexuales y heterosexuales</u>
+
+Respecto a las proporciones de uniones homosexuales, los datos muestran un incremento significativo entre franjas. La primera franja tiene una proporción de 1.24 con un IC al 95% de [1.16, 1.35], mientras que en la segunda franja la proporción aumenta a 44.83 con un IC de [1.25, 1.47]. Este cambio es evidente tanto en las muestras grandes (tabla 2) como en las pequeñas (tabla 3).
+
+En el caso de las uniones heterosexuales, no se detectaron diferencias significativas entre las franjas. El p-valor obtenido (0.4204 en muestras grandes y 1 en muestras pequeñas) es superior al nivel de significación, como se indica en la tabla 4 y 5. Además, los intervalos de confianza (figura 7) muestran un alto grado de solapamiento.
+
+<u>Muestras grandes y pequeñas</u>
+
+Para las muestras pequeñas, las diferencias en las medias y medianas también son significativas (tabla 5). Los p-valores obtenidos para la media (0.02403) y la mediana (0.02825) confirman estas diferencias, aunque con menor robustez estadística en comparación con las muestras grandes.
+
+Sin embargo, en el caso de las proporciones de uniones homosexuales y heterosexuales, los resultados con muestras pequeñas no permiten rechazar la hipótesis nula de igualdad, como se observa en los p-valores mayores a 0.05 (tabla 5).
+
+## <u>Conclusiones</u><a name="conclusiones"></a>
+
+En resumen, los resultados reflejan un incremento significativo en el número medio y mediano de solicitudes de uniones de hecho en la franja 2017-2023 en comparación con la franja 2010-2016. Asimismo, se aprecia un cambio significativo en la proporción de uniones homosexuales entre las franjas temporales, mientras que no se detectan diferencias significativas en las uniones heterosexuales. Estas conclusiones son consistentes tanto para muestras grandes como pequeñas, aunque con menor solidez estadística en el segundo caso.

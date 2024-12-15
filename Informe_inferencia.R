@@ -62,10 +62,10 @@ curve(dnorm(x,mean(solicitudes.segunda.muestra.pequeña),sd(solicitudes.segunda.
         add=TRUE, col="red")
 #------------------------------------#
 #Transformación de los datos
-solicitudes.primera.muestra.grande.transformadas=log(solicitudes.primera.muestra.grande)
-solicitudes.segunda.muestra.grande.transformadas=log(solicitudes.segunda.muestra.grande)
-solicitudes.primera.muestra.pequeña.transformadas=log(solicitudes.primera.muestra.pequeña)
-solicitudes.segunda.muestra.pequeña.transformadas=log(solicitudes.segunda.muestra.pequeña)
+solicitudes.primera.muestra.grande.transformadas=log10(solicitudes.primera.muestra.grande)
+solicitudes.segunda.muestra.grande.transformadas=log10(solicitudes.segunda.muestra.grande)
+solicitudes.primera.muestra.pequeña.transformadas=log10(solicitudes.primera.muestra.pequeña)
+solicitudes.segunda.muestra.pequeña.transformadas=log10(solicitudes.segunda.muestra.pequeña)
 
 #comprobacion de los datos transformados
 jarque.bera.test(solicitudes.primera.muestra.grande.transformadas)
@@ -135,59 +135,35 @@ z.test(solicitudes.segunda.muestra.grande.transformadas, sigma.x = sd(solicitude
 t.test(solicitudes.primera.muestra.pequeña.transformadas, conf.level = 0.95)
 t.test(solicitudes.segunda.muestra.pequeña.transformadas,conf.level = 0.95)
 
-#Diagrama de intervalos
-test.M.grande=z.test(notaM.muestra.grande, sigma.x=sd(notaM.muestra.grande),conf.level=0.95)
-Li.M.grande=test.M.grande$conf.int[1]
-Ls.M.grande=test.M.grande$conf.int[2]
-test.T.grande=z.test(notaT.muestra.grande, sigma.x=sd(notaT.muestra.grande),
-                     conf.level=0.95)
-Li.T.grande=test.T.grande$conf.int[1]
-Ls.T.grande=test.T.grande$conf.int[2]
-test.M.pequeña=t.test(notaM.muestra.pequeña, conf.level=0.95)
-Li.M.pequeña=test.M.pequeña$conf.int[1]
-Ls.M.pequeña=test.M.pequeña$conf.int[2]
-test.T.pequeña=t.test(notaT.muestra.pequeña, conf.level=0.95)
-Li.T.pequeña=test.T.pequeña$conf.int[1]
-Ls.T.pequeña=test.T.pequeña$conf.int[2]
-plot(c(1,1,1.1,1.1,2,2,2.1,2.1),c(Li.M.grande, Ls.M.grande, Li.T.grande,Ls.T.grande, Li.M.pequeña, Ls.M.pequeña, Li.T.pequeña, Ls.T.pequeña), xlim =c(0,4), xlab = "1=Muestras grandes, 2=muestras pequeñas", ylab = "Nota")
-lines(c(1,1),c(Li.M.grande,Ls.M.grande))
-lines(c(1.1,1.1),c(Li.T.grande,Ls.T.grande),col="red")
-lines(c(2,2),c(Li.M.pequeña,Ls.M.pequeña))
-lines(c(2.1,2.1),c(Li.T.pequeña,Ls.T.pequeña),col="red")
-text(0.7, 8.5, label = "Mañana")
-text(1.3, 7.5, label = "Tarde")
-text(1.7, 8.5, label = "Mañana")
-text(2.3, 7.5, label = "Tarde")
 
 
+#diagramas
+# Desactivar notación científica
+options(scipen=999)
 
-# --- Intervalos de confianza para muestras grandes ---
+# Intervalos de confianza para muestras grandes
 # Primera franja
-test.primera.grande <- z.test(solicitudes.primera.muestra.grande.transformadas,
-                              sigma.x = sd(solicitudes.primera.muestra.grande.transformadas), 
-                              conf.level = 0.95)
-Li.primera.grande <- test.primera.grande$conf.int[1]
-Ls.primera.grande <- test.primera.grande$conf.int[2]
+test.primera.grande <- t.test(solicitudes.primera.muestra.grande.transformadas, conf.level = 0.95)
+Li.primera.grande <- 10^test.primera.grande$conf.int[1]
+Ls.primera.grande <- 10^test.primera.grande$conf.int[2]
 
 # Segunda franja
-test.segunda.grande <- z.test(solicitudes.segunda.muestra.grande.transformadas,
-                              sigma.x = sd(solicitudes.segunda.muestra.grande.transformadas), 
-                              conf.level = 0.95)
-Li.segunda.grande <- test.segunda.grande$conf.int[1]
-Ls.segunda.grande <- test.segunda.grande$conf.int[2]
+test.segunda.grande <- t.test(solicitudes.segunda.muestra.grande.transformadas, conf.level = 0.95)
+Li.segunda.grande <- 10^test.segunda.grande$conf.int[1]
+Ls.segunda.grande <- 10^test.segunda.grande$conf.int[2]
 
-# --- Intervalos de confianza para muestras pequeñas ---
+# Intervalos de confianza para muestras pequeñas
 # Primera franja
 test.primera.pequeña <- t.test(solicitudes.primera.muestra.pequeña.transformadas, conf.level = 0.95)
-Li.primera.pequeña <- test.primera.pequeña$conf.int[1]
-Ls.primera.pequeña <- test.primera.pequeña$conf.int[2]
+Li.primera.pequeña <- 10^test.primera.pequeña$conf.int[1]
+Ls.primera.pequeña <- 10^test.primera.pequeña$conf.int[2]
 
 # Segunda franja
 test.segunda.pequeña <- t.test(solicitudes.segunda.muestra.pequeña.transformadas, conf.level = 0.95)
-Li.segunda.pequeña <- test.segunda.pequeña$conf.int[1]
-Ls.segunda.pequeña <- test.segunda.pequeña$conf.int[2]
+Li.segunda.pequeña <- 10^test.segunda.pequeña$conf.int[1]
+Ls.segunda.pequeña <- 10^test.segunda.pequeña$conf.int[2]
 
-# --- Graficar los intervalos de confianza ---
+# Graficar los intervalos de confianza
 # Definir puntos y límites para el gráfico
 x <- c(1, 1, 1.1, 1.1, 2, 2, 2.1, 2.1)
 y <- c(Li.primera.grande, Ls.primera.grande, 
@@ -198,7 +174,7 @@ y <- c(Li.primera.grande, Ls.primera.grande,
 # Crear el gráfico
 plot(x, y, xlim = c(0.5, 2.5), ylim = c(min(y) - 0.5, max(y) + 0.5), 
      xlab = "1 = Muestras grandes, 2 = Muestras pequeñas", 
-     ylab = "Log de Solicitudes", 
+     ylab = "Media de solicitudes", 
      main = "Intervalos de Confianza para Solicitudes")
 
 # Agregar líneas para los intervalos
@@ -208,9 +184,10 @@ lines(c(2, 2), c(Li.primera.pequeña, Ls.primera.pequeña))
 lines(c(2.1, 2.1), c(Li.segunda.pequeña, Ls.segunda.pequeña), col = "red")
 
 # Etiquetas para identificar franjas
-text(0.7, max(y) - 0.5, label = "Primera franja", col = "blue")
-text(1.3, max(y) - 0.5, label = "Segunda franja", col = "red")
-
+text(1, Ls.primera.grande + 0.1, label = "Primera franja (Grande)", col = "blue", pos = 3)
+text(1.1, Ls.segunda.grande + 0.1, label = "Segunda franja (Grande)", col = "red", pos = 3)
+text(2, Ls.primera.pequeña + 0.1, label = "Primera franja (Pequeña)", col = "blue", pos = 3)
+text(2.1, Ls.segunda.pequeña + 0.1, label = "Segunda franja (Pequeña)", col = "red", pos = 3)
 #separacion en parejas homosexuales y heterosexuales
 
 #validar que los datos sean numericos ya que si las solicitudes son 0 y les hacemos el logaritmo sale NA (not a number)
@@ -219,10 +196,10 @@ parejas.heterosexuales.validas.pf<-uniones.primera.franja$Parejas.heterosexuales
 parejas.homosexuales.validas.sf<-uniones.segunda.franja$Parejas.homosexuales[uniones.segunda.franja$Parejas.homosexuales>0]
 parejas.heterosexuales.validas.sf<-uniones.segunda.franja$Parejas.heterosexuales[uniones.segunda.franja$Parejas.homosexuales>0]
 
-primera.franja.homosexuales <- log(parejas.homosexuales.validas.pf)
-primera.franja.heterosexuales <- log(parejas.heterosexuales.validas.pf)
-segunda.franja.homosexuales <- log(parejas.homosexuales.validas.sf)
-segunda.franja.heterosexuales <- log(parejas.heterosexuales.validas.sf)
+primera.franja.homosexuales <- log10(parejas.homosexuales.validas.pf)
+primera.franja.heterosexuales <- log10(parejas.heterosexuales.validas.pf)
+segunda.franja.homosexuales <- log10(parejas.homosexuales.validas.sf)
+segunda.franja.heterosexuales <- log10(parejas.heterosexuales.validas.sf)
 
 total.solicitudes.primera<- sum(solicitudes.primera.muestra.grande.transformadas)
 
@@ -240,18 +217,18 @@ total.primera.franja.pequeña<-sum(solicitudes.primera.muestra.pequeña.transfor
 total.segunda.franja.pequeña<- sum(solicitudes.segunda.muestra.pequeña.transformadas)
 #proporciones muestrales
 (p.primera.franja.homosexuales=total.parejas.homosexuales.primera.franja/total.primera.franja.grande)
-10^0.2179212
+10^0.09464197
 (p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/total.primera.franja.grande)
-10^0.3200837
+10^1.651662
 
 
 ## Intervalos de confianza
 prop.test(total.parejas.homosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
-10^0.1755016
-10^0.2672701
+10^0.06679966
+10^0.13244207
 prop.test(total.parejas.homosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
-10^0.2519388
-10^0.3500906
+10^0.09773609
+10^0.17021157
 
 
 #####################Muestras Pequeñas################################
@@ -261,59 +238,72 @@ parejas.heterosexuales.muestra.pequeña.pf<-sample(primera.franja.heterosexuales
 total.muestra.pequeña.primera.franja=sum(parejas.homosexuales.muestra.pequeña.pf, parejas.heterosexuales.muestra.pequeña.pf)
 total.muestra.pequeña.segunda.franja=sum(parejas.homosexuales.muestra.pequeña.sf, parejas.heterosexuales.muestra.pequeña.sf)
 
+total.muestra.pequeña.primera.franja
 ##segunda franja
-parejas.homosexuales.muestra.pequeña.sf<-sample(segunda.franja.homosexuales,20)
-parejas.heterosexuales.muestra.pequeña.sf<-sample(segunda.franja.heterosexuales,20)
+parejas.homosexuales.muestra.pequeña.sf<-sample(segunda.franja.homosexuales,10)
+parejas.heterosexuales.muestra.pequeña.sf<-sample(segunda.franja.heterosexuales,10)
 
 total.parejas.homosexuales.muestra.pequeña.pf<-sum(parejas.homosexuales.muestra.pequeña.pf)
 total.parejas.homosexuales.muestra.pequeña.sf<-sum(parejas.homosexuales.muestra.pequeña.sf)
-   
+
+muestra.completa.pequeña.pf<-c(parejas.homosexuales.muestra.pequeña.pf, parejas.heterosexuales.muestra.pequeña.pf)
+mean(muestra.completa.pequeña.pf)
+10^1.40
+median(muestra.completa.pequeña.pf)
+10^1.22
+muestra.completa.pequeñas.sf<-c(parejas.homosexuales.muestra.pequeña.sf, parejas.heterosexuales.muestra.pequeña.sf)
+mean(muestra.completa.pequeñas.sf)
+10^1.59
+median(muestra.completa.pequeñas.sf)
+10^1.61
 ##Proporciones muestrales
 (p.primera.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
-10^0.205378
+10^0.2303739
 (p.segunda.franja.homosexuales.muestra.pequeña<-total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
-10^0.234586
+10^0.3448815
 
 ##Intervalos de confianza
 prop.test(total.parejas.homosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)
-10^0.1217433
-10^0.3251938
+10^0.1131521
+10^0.4125432
 prop.test(total.parejas.homosexuales.muestra.pequeña.sf,total.muestra.pequeña.segunda.franja,conf.level = 0.95, correct = FALSE)
-10^0.1706515
-10^0.3134213
+10^0.2004009
+10^0.5251190
 
 
 # --- Intervalos de confianza para muestras grandes ---
+
+# Intervalos de confianza para muestras grandes
 # Primera franja (Mañana)
 test.primera.grande <- prop.test(total.parejas.homosexuales.primera.franja, 
                                  total.primera.franja.grande, 
                                  conf.level = 0.95, correct = FALSE)
-Li.primera.grande <- test.primera.grande$conf.int[1]
-Ls.primera.grande <- test.primera.grande$conf.int[2]
+Li.primera.grande <- 10^test.primera.grande$conf.int[1]
+Ls.primera.grande <- 10^test.primera.grande$conf.int[2]
 
 # Segunda franja (Tarde)
 test.segunda.grande <- prop.test(total.parejas.homosexuales.segunda.franja, 
                                  total.segunda.franja.grande, 
                                  conf.level = 0.95, correct = FALSE)
-Li.segunda.grande <- test.segunda.grande$conf.int[1]
-Ls.segunda.grande <- test.segunda.grande$conf.int[2]
+Li.segunda.grande <- 10^test.segunda.grande$conf.int[1]
+Ls.segunda.grande <- 10^test.segunda.grande$conf.int[2]
 
-# --- Intervalos de confianza para muestras pequeñas ---
+# Intervalos de confianza para muestras pequeñas
 # Primera franja (Mañana)
 test.primera.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.pf, 
                                   total.muestra.pequeña.primera.franja, 
                                   conf.level = 0.95, correct = FALSE)
-Li.primera.pequeña <- test.primera.pequeña$conf.int[1]
-Ls.primera.pequeña <- test.primera.pequeña$conf.int[2]
+Li.primera.pequeña <- 10^test.primera.pequeña$conf.int[1]
+Ls.primera.pequeña <- 10^test.primera.pequeña$conf.int[2]
 
 # Segunda franja (Tarde)
 test.segunda.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.sf, 
                                   total.muestra.pequeña.segunda.franja, 
                                   conf.level = 0.95, correct = FALSE)
-Li.segunda.pequeña <- test.segunda.pequeña$conf.int[1]
-Ls.segunda.pequeña <- test.segunda.pequeña$conf.int[2]
+Li.segunda.pequeña <- 10^test.segunda.pequeña$conf.int[1]
+Ls.segunda.pequeña <- 10^test.segunda.pequeña$conf.int[2]
 
-# --- Graficar el diagrama de intervalos de confianza ---
+# Graficar el diagrama de intervalos de confianza
 # Puntos y valores de los intervalos
 x <- c(1, 1, 1.1, 1.1, 2, 2, 2.1, 2.1)
 y <- c(Li.primera.grande, Ls.primera.grande, 
@@ -333,45 +323,49 @@ lines(c(1.1, 1.1), c(Li.segunda.grande, Ls.segunda.grande), col = "red")
 lines(c(2, 2), c(Li.primera.pequeña, Ls.primera.pequeña))
 lines(c(2.1, 2.1), c(Li.segunda.pequeña, Ls.segunda.pequeña), col = "red")
 
-# Etiquetas para identificar franjas
-text(0.7, max(y) - 0.1, label = "Primera Franja (Grande)")
-text(1.3, max(y) - 0.1, label = "Segunda Franja (Grande)", col = "red")
-text(1.7, max(y) - 0.2, label = "Primera Franja (Pequeña)")
-text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
+# Ajustar etiquetas para identificar franjas
+text(1, Ls.primera.grande + 0.05, label = "Primera Franja (Grande)", col = "blue", pos = 3)
+text(1.1, Ls.segunda.grande + 0.05, label = "Segunda Franja (Grande)", col = "red", pos = 3)
+text(2, Ls.primera.pequeña + 0.05, label = "Primera Franja (Pequeña)", col = "blue", pos = 3)
+text(2.1, Ls.segunda.pequeña + 0.05, label = "Segunda Franja (Pequeña)", col = "red", pos = 3)
 
 #---------------------------Parejas Heterosexuales------------------------------------
 ##Proporciones muestrales
 (p.primera.franja.heterosexuales=total.parejas.heterosexuales.primera.franja/total.primera.franja.grande)
-10^0.967996
+10^0.4203953
 (p.segunda.franja.heterosexuales=total.parejas.heterosexuales.segunda.franja/total.primera.franja.grande)
-10^0.9601044
+10^0.416968
 
 ## Intervalos de confianza
 prop.test(total.parejas.heterosexuales.primera.franja, total.primera.franja.grande, conf.level = 0.95, correct = FALSE)
-10^0.9419117
-10^0.9825839
+10^0.3666575
+10^0.4760887
 prop.test(total.parejas.heterosexuales.segunda.franja,total.segunda.franja.grande, conf.level = 0.95, correct=FALSE)
-10^0.8584248
-10^0.9244492
+10^0.3381558
+10^0.4426262
 
 
 
 #####################Muestras Pequeñas################################
 ##como necesito coger solo las parejas validas(que tengan solicitudes mayores a 0) tengo que volver a hacer las muestras pequeñas pero solo con datos validos
+p
 
 total.parejas.heterosexuales.muestra.pequeña.pf<-sum(parejas.heterosexuales.muestra.pequeña.pf)
 total.parejas.heterosexuales.muestra.pequeña.sf<-sum(parejas.heterosexuales.muestra.pequeña.sf)
 
 ##Proporciones muestrales
 (p.primera.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
-10^0.794622
+10^0.7696261
 (p.segunda.franja.heterosexuales.muestra.pequeña<-total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
-10^0.7879987
+10^0.7394658
 
 ##Intervalos de confianza
 prop.test(total.parejas.heterosexuales.muestra.pequeña.pf,total.muestra.pequeña.primera.franja,conf.level = 0.95, correct = FALSE)
+10^0.5874568
+10^0.8868479
 prop.test(total.parejas.heterosexuales.muestra.pequeña.sf,total.muestra.pequeña.segunda.franja,conf.level = 0.95, correct = FALSE)
-
+10^0.5603185
+10^0.8634132
 
 
 # --- Intervalos de confianza para muestras grandes ---
@@ -379,30 +373,30 @@ prop.test(total.parejas.heterosexuales.muestra.pequeña.sf,total.muestra.pequeñ
 ic.grande.primera <- prop.test(total.parejas.heterosexuales.primera.franja, 
                                total.primera.franja.grande, 
                                conf.level = 0.95, correct = FALSE)
-lim.inf.grande.primera <- ic.grande.primera$conf.int[1]
-lim.sup.grande.primera <- ic.grande.primera$conf.int[2]
+lim.inf.grande.primera <- 10^ic.grande.primera$conf.int[1]
+lim.sup.grande.primera <- 10^ic.grande.primera$conf.int[2]
 
 # Segunda franja (Tarde)
 ic.grande.segunda <- prop.test(total.parejas.heterosexuales.segunda.franja, 
                                total.segunda.franja.grande, 
                                conf.level = 0.95, correct = FALSE)
-lim.inf.grande.segunda <- ic.grande.segunda$conf.int[1]
-lim.sup.grande.segunda <- ic.grande.segunda$conf.int[2]
+lim.inf.grande.segunda <- 10^ic.grande.segunda$conf.int[1]
+lim.sup.grande.segunda <- 10^ic.grande.segunda$conf.int[2]
 
 # --- Intervalos de confianza para muestras pequeñas ---
 # Primera franja (Mañana)
 ic.pequeña.primera <- prop.test(total.parejas.heterosexuales.muestra.pequeña.pf, 
                                 total.muestra.pequeña.primera.franja, 
                                 conf.level = 0.95, correct = FALSE)
-lim.inf.pequeña.primera <- ic.pequeña.primera$conf.int[1]
-lim.sup.pequeña.primera <- ic.pequeña.primera$conf.int[2]
+lim.inf.pequeña.primera <- 10^ic.pequeña.primera$conf.int[1]
+lim.sup.pequeña.primera <- 10^ic.pequeña.primera$conf.int[2]
 
 # Segunda franja (Tarde)
 ic.pequeña.segunda <- prop.test(total.parejas.heterosexuales.muestra.pequeña.sf, 
                                 total.muestra.pequeña.segunda.franja, 
                                 conf.level = 0.95, correct = FALSE)
-lim.inf.pequeña.segunda <- ic.pequeña.segunda$conf.int[1]
-lim.sup.pequeña.segunda <- ic.pequeña.segunda$conf.int[2]
+lim.inf.pequeña.segunda <- 10^ic.pequeña.segunda$conf.int[1]
+lim.sup.pequeña.segunda <- 10^ic.pequeña.segunda$conf.int[2]
 
 # --- Graficar el diagrama de intervalos de confianza ---
 # Puntos y valores de los intervalos
@@ -424,12 +418,11 @@ lines(c(1.1, 1.1), c(lim.inf.grande.segunda, lim.sup.grande.segunda), col = "red
 lines(c(2, 2), c(lim.inf.pequeña.primera, lim.sup.pequeña.primera))
 lines(c(2.1, 2.1), c(lim.inf.pequeña.segunda, lim.sup.pequeña.segunda), col = "red")
 
-# Etiquetas para identificar franjas
-text(0.7, max(y) - 0.1, label = "Primera Franja (Grande)")
-text(1.3, max(y) - 0.1, label = "Segunda Franja (Grande)", col = "red")
-text(1.7, max(y) - 0.2, label = "Primera Franja (Pequeña)")
-text(2.3, max(y) - 0.2, label = "Segunda Franja (Pequeña)", col = "red")
-
+# Ajustar etiquetas para identificar franjas
+text(1, lim.sup.grande.primera + 0.05, label = "Primera Franja (Grande)", col = "blue", pos = 3)
+text(1.1, lim.sup.grande.segunda + 0.05, label = "Segunda Franja (Grande)", col = "red", pos = 3)
+text(2, lim.sup.pequeña.primera + 0.05, label = "Primera Franja (Pequeña)", col = "blue", pos = 3)
+text(2.1, lim.sup.pequeña.segunda + 0.05, label = "Segunda Franja (Pequeña)", col = "red", pos = 3)
 
 
 ###---------------Contrastes de Hipotesis---------------
@@ -477,12 +470,8 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 #como las proporciones son muestras muy parecidas primero hay que comprobar si hay alguna diferencia
 #𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera ≠ 𝑝HomoSegunda
 (prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
-#como el p-valor(0.01986) es menor que 0.05 se acepta la hipotesis alternativa, asi que hay una diferencia significativa entre las proporciones
+#como el p-valor(0.1609) es mayor se no hay diferencia significativa
 
-#𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera < 𝑝HomoSegunda
-(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="less", conf.level=0.95, correct=FALSE))
-#como el p-valor<0.05 entonces se acepta la hipotesis alternativa de que la proporcion de parejas homosexuales
-#es mayor en la segunda franja que en la primera
 
 ##muestras pequeñas
 (p.primera.franja.homosexuales.muestra.pequeña=total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
@@ -499,13 +488,15 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 
 #𝐻0: 𝑝heteroPrimera =𝑝heteroSegunda vs 𝐻𝐴: 𝑝heteroPrimera ≠𝑝heteroSegunda
 (prop.test(c(total.parejas.heterosexuales.primera.franja, total.parejas.heterosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
-#Como el p-valor(0.0003363)<0.05 entonces se acepta la hipotesis alternativa de que hay diferencia significativa entre las proporciones
+#Como el p-valor(0.0003363)>0.05 entonces se acepta que no hay diferencia significativa
 
-#𝐻0: pHeteroPrimera = pHeteroSegunda vs 𝐻𝐴: pHeteroPrimera > 𝑝HeteroSegunda
-(prop.test(c(total.parejas.heterosexuales.primera.franja, total.parejas.heterosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="greater", conf.level=0.95, correct=FALSE))
-#Como el p-valor(0.0001681)<0.05 entonces se acepta la hipotesis alternativa de que la proporcion de parejas heterosexuales
-#en la primera franja es mayor que en la segunda franja
+#muestras pequeñas
+(p.primera.franja.heterosexuales.muestra.pequeña=total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
+(p.segunda.franja.heterosexuales.muestra.pequeña=total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
 
+#𝐻0: 𝑝homoPrimera = 𝑝homoSegunda vs 𝐻𝐴: 𝑝homoPrimera ≠ 𝑝homoSegunda
+(prop.test(c(total.parejas.heterosexuales.muestra.pequeña.pf, total.parejas.heterosexuales.muestra.pequeña.sf),c(total.muestra.pequeña.primera.franja, total.muestra.pequeña.segunda.franja)))
+#como p-valor>0.05 no hay evidencias de que haya una diferencia significativa entre la proporcion de parejas heterosexuales en la primera y segunda franja
 
 ##--------------------------Realizar contrastes de hipotesis no paremetricos------------------
 #Contrastes de hipotesis sobre la diferencia de medianas
@@ -514,11 +505,11 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 (median(solicitudes.segunda.muestra.grande.transformadas))
 #𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera ≠ MsolicitudesSegunda
 wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, paired = FALSE, alternative = "two.sided", conf.level = 0.95, exact = FALSE)
-#Como el p-valor(0.02) < 0.05 se puede aceptar la hipotesis alternativa de que hay diferencia significativa entre las medianas
+#Como el p-valor < 0.05 se puede aceptar la hipotesis alternativa de que hay diferencia significativa entre las medianas
 
 #𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera < MsolicitudesSegunda
 wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segunda.muestra.grande.transformadas, paired = FALSE, alternative = "less", conf.level = 0.95, exact = FALSE)
-#Como el pvalor(0.01037) < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
+#Como el pvalor < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
 
 
 #MUESTRAS PEQUEÑAS
@@ -526,5 +517,5 @@ wilcox.test(solicitudes.primera.muestra.grande.transformadas, solicitudes.segund
 (median(solicitudes.segunda.muestra.pequeña.transformadas))
 #𝐻0: MsolicitudesPrimera = MsolicitudesSegunda vs 𝐻𝐴: MsolicitudesPrimera < MsolicitudesSegunda
 wilcox.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.muestra.pequeña.transformadas, paired = FALSE, alternative = "less", conf.level = 0.95, exact = FALSE)
-#Como el pvalor(0.04544) < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
+#Como el pvalor < 0.05 entonces se puede aceptar que la mediana poblacional de la segunda franja es mayor
 
