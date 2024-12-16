@@ -129,13 +129,18 @@ jarque.bera.test(solicitudes.segunda.muestra.grande.transformadas)
 install.packages("BSDA")
 library(BSDA)
 z.test(solicitudes.primera.muestra.grande.transformadas, sigma.x = sd(solicitudes.primera.muestra.grande.transformadas), conf.level = 0.95)
+10^2.039126
+10^2.219882
 z.test(solicitudes.segunda.muestra.grande.transformadas, sigma.x = sd(solicitudes.segunda.muestra.grande.transformadas), conf.level = 0.95)
-
+10^5.057269
+10^5.45
 #Intervalos de confianza para datos pequeños
 t.test(solicitudes.primera.muestra.pequeña.transformadas, conf.level = 0.95)
+10^4.53
+10^5.30
 t.test(solicitudes.segunda.muestra.pequeña.transformadas,conf.level = 0.95)
-
-
+10^5.07
+10^5.8
 
 #diagramas
 # Desactivar notación científica
@@ -274,14 +279,14 @@ prop.test(total.parejas.homosexuales.muestra.pequeña.sf,total.muestra.pequeña.
 # --- Intervalos de confianza para muestras grandes ---
 
 # Intervalos de confianza para muestras grandes
-# Primera franja (Mañana)
+# Primera franja
 test.primera.grande <- prop.test(total.parejas.homosexuales.primera.franja, 
                                  total.primera.franja.grande, 
                                  conf.level = 0.95, correct = FALSE)
 Li.primera.grande <- 10^test.primera.grande$conf.int[1]
 Ls.primera.grande <- 10^test.primera.grande$conf.int[2]
 
-# Segunda franja (Tarde)
+# Segunda franja
 test.segunda.grande <- prop.test(total.parejas.homosexuales.segunda.franja, 
                                  total.segunda.franja.grande, 
                                  conf.level = 0.95, correct = FALSE)
@@ -289,14 +294,14 @@ Li.segunda.grande <- 10^test.segunda.grande$conf.int[1]
 Ls.segunda.grande <- 10^test.segunda.grande$conf.int[2]
 
 # Intervalos de confianza para muestras pequeñas
-# Primera franja (Mañana)
+# Primera franja
 test.primera.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.pf, 
                                   total.muestra.pequeña.primera.franja, 
                                   conf.level = 0.95, correct = FALSE)
 Li.primera.pequeña <- 10^test.primera.pequeña$conf.int[1]
 Ls.primera.pequeña <- 10^test.primera.pequeña$conf.int[2]
 
-# Segunda franja (Tarde)
+# Segunda franja
 test.segunda.pequeña <- prop.test(total.parejas.homosexuales.muestra.pequeña.sf, 
                                   total.muestra.pequeña.segunda.franja, 
                                   conf.level = 0.95, correct = FALSE)
@@ -369,14 +374,14 @@ prop.test(total.parejas.heterosexuales.muestra.pequeña.sf,total.muestra.pequeñ
 
 
 # --- Intervalos de confianza para muestras grandes ---
-# Primera franja (Mañana)
+# Primera franja
 ic.grande.primera <- prop.test(total.parejas.heterosexuales.primera.franja, 
                                total.primera.franja.grande, 
                                conf.level = 0.95, correct = FALSE)
 lim.inf.grande.primera <- 10^ic.grande.primera$conf.int[1]
 lim.sup.grande.primera <- 10^ic.grande.primera$conf.int[2]
 
-# Segunda franja (Tarde)
+# Segunda franja
 ic.grande.segunda <- prop.test(total.parejas.heterosexuales.segunda.franja, 
                                total.segunda.franja.grande, 
                                conf.level = 0.95, correct = FALSE)
@@ -384,14 +389,14 @@ lim.inf.grande.segunda <- 10^ic.grande.segunda$conf.int[1]
 lim.sup.grande.segunda <- 10^ic.grande.segunda$conf.int[2]
 
 # --- Intervalos de confianza para muestras pequeñas ---
-# Primera franja (Mañana)
+# Primera franja
 ic.pequeña.primera <- prop.test(total.parejas.heterosexuales.muestra.pequeña.pf, 
                                 total.muestra.pequeña.primera.franja, 
                                 conf.level = 0.95, correct = FALSE)
 lim.inf.pequeña.primera <- 10^ic.pequeña.primera$conf.int[1]
 lim.sup.pequeña.primera <- 10^ic.pequeña.primera$conf.int[2]
 
-# Segunda franja (Tarde)
+# Segunda franja
 ic.pequeña.segunda <- prop.test(total.parejas.heterosexuales.muestra.pequeña.sf, 
                                 total.muestra.pequeña.segunda.franja, 
                                 conf.level = 0.95, correct = FALSE)
@@ -446,7 +451,7 @@ dS=data.frame(SOLICITUDES=solicitudes.segunda.muestra.grande.transformadas, FRAN
 d=rbind(dP,dS)
 leveneTest(d$SOLICITUDES,d$FRANJA)
 
-#Como el p-valor(0.3616) es superior a 0.05 se puede suponer que las varianzas son iguales
+#Como el p-valor es superior a 0.05 se puede suponer que las varianzas son iguales
 
 ##muestras pequeñas
 mean(solicitudes.primera.muestra.pequeña.transformadas)

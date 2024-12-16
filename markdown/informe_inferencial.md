@@ -169,7 +169,7 @@ proporciones de diferentes tipos de parejas:
 | Tamaño muestra | 63 | 63 |
 | Media (muestra) | 185.1746 | 254.127 |
 | Mediana (muestra) | 141 | 186 |
-| IC (95%) media |0.9419 | 0.9825|
+| IC (95%) media | [109.42, 165.9] | [114095, 281838] |
 | Prop. Parejas Heterosexuales (muestra) | 2.63 | 2.61 |
 | IC (95%) Prop. Parejas Heterosexuales | [2.32, 2.99]| [2.17, 2.77] |
 | Prop. Parejas Homosexuales (muestra) | 1.24 | 44.83 |
@@ -183,7 +183,7 @@ En la tabla 3 se muestran los mismos cálculos, pero al utilizar las muestras pe
 | Tamaño muestra | 20 | 20 |
 | Media (muestra) | 25.11 | 38.90 |
 | Mediana (muestra) | 16.59 | 40.73 |
-| IC (95%) media |0.9419 | 0.9825|
+| IC (95%) media | [3388, 199526] | [117489, 630957] |
 | Prop. Parejas Heterosexuales (muestra) | 5.88 | 5.48 |
 | IC (95%) Prop. Parejas Heterosexuales | [3.86, 7.70]| [3.63, 7.30] |
 | Prop. Parejas Homosexuales (muestra) | 1.69 | 2.21 |
@@ -191,6 +191,7 @@ En la tabla 3 se muestran los mismos cálculos, pero al utilizar las muestras pe
 
 <br>
 En las figuras 5 a 7 se muestran los intervalos de confianza para la media, la proporcion de parejas homosexuales y la proporcion de parejas heterosexuales
+<br>
 <div>
 <p style = 'text-align:center;'>
 <img src="proporcion.media.png" width="">
@@ -263,4 +264,4 @@ Sin embargo, en el caso de las proporciones de uniones homosexuales y heterosexu
 
 ## <u>Conclusiones</u><a name="conclusiones"></a>
 
-En resumen, los resultados reflejan un incremento significativo en el número medio y mediano de solicitudes de uniones de hecho en la franja 2017-2023 en comparación con la franja 2010-2016. Asimismo, se aprecia un cambio significativo en la proporción de uniones homosexuales entre las franjas temporales, mientras que no se detectan diferencias significativas en las uniones heterosexuales. Estas conclusiones son consistentes tanto para muestras grandes como pequeñas, aunque con menor solidez estadística en el segundo caso.
+En resumen, los resultados reflejan un incremento significativo en el número medio y mediano de solicitudes de uniones de hecho en la franja 2017-2023 en comparación con la franja 2010-2016. Por otro lado, se aprecia un cambio significativo en la proporción de uniones homosexuales entre las franjas temporales, mientras que no se detectan diferencias significativas en las uniones heterosexuales. Estas conclusiones son consistentes tanto para muestras grandes como pequeñas, aunque con menor solidez estadística en el segundo caso.
