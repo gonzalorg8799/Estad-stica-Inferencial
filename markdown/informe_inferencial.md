@@ -57,13 +57,13 @@
 ## <u> Introducción </u><a name="introduccion"></a>
 
 ### <strong>Contexto</strong><a name="contexto"></a>
-En la comunidad de Castilla y León se solicitan anualmente miles de solicitudes de uniones de hecho, debido a la gran cantidad de solicitudes en el ultimo año, se han dividido el numero de solicitudes en dos grandes grupos, el primero se engloba con todas las solicitudes desde el año 2010 hasta el año 2016 y el segundo grupo contiene todas las solicitudes que comprenden desde el año 2017 hasta el año 2023
+En la comunidad de Castilla y León se solicitan anualmente miles de solicitudes de uniones de hecho, debido a la gran cantidad de solicitudes en el ultimo año, se han dividido el numero de solicitudes en dos grandes grupos, el primero se engloba con todas las solicitudes mensuales desde el año 2010 hasta el año 2016 y el segundo grupo contiene todas las solicitudes menusales que comprenden desde el año 2017 hasta el año 2023
 
 ### <strong>Objetivo</strong><a name="objetivo"></a>
-El objetivo de la investigación es: "Realizar un análisis estadístico descriptivo de las solicitudes de hecho en la comunidad de Castilla y León comparando las diferencias que existen respecto a número de solicitudes de los ultimos años con las solicitudes de años pasados".
+El objetivo de la investigación es: "Realizar un análisis estadístico inferencial de las solicitudes de hecho en la comunidad de Castilla y León comparando las diferencias que existen respecto a número de solicitudes de los ultimos años con las solicitudes de años pasados".
 
 ### <strong>Alcance</strong><a name="alcance"></a>
-La investigacion se limita al número de solicitudes de uniones de hecho localizadas en Castilla y León en los años que comprenden entre 2010 y 2023.
+La investigacion se limita al número de solicitudes mensuales de uniones de hecho localizadas en Castilla y León en los años que comprenden entre 2010 y 2023.
 
 ## <u>Metodología</u><a name="metodologia"></a>
 ### <strong>Poblaciones y propiedad estudiada</strong> <a name="poblaciones"></a>
@@ -77,7 +77,7 @@ Se han seleccionado dos muestras de cada poblacion para realizar el estudio:
 - Muestras grandes: Se ha seleccionado una muestra de 63 meses de la primera franja y una muestra de 63 meses de la segunda franja obteniendo todas las solicitudes realizadas en cada uno de los meses, en el que podemos diferenciar dos tipos de uniones de hecho, las uniones homosexuales y las uniones heterosexuales
 - Muestras pequeñas: Para comparar resultados utilizando tambien muestras pequeñas, se han seleccionado aleatoriamente una muestra de 20 meses de la primera franja y 20 meses de la segunda franja
 
-Se ha trabajado con un archivo "uniones_de_hecho.csv" que incluye todas las solicitudes presentadas en Castilla y León en los ultimos años. El archivo ha sido presentado por el ayuntamiento de la comunidad de Castilla y León.
+Se ha trabajado con un archivo "uniones_de_hecho.csv" que incluye todas las solicitudes presentadas en Castilla y León en los ultimos años. El archivo ha sido presentado por el ayuntamiento de la comunidad de Castilla y León: ( https://datosabiertos.jcyl.es/web/jcyl/set/es/demografia/registro-parejas-hecho/1285090203163. )
 
 ### <strong>Normalidad de los datos</strong><a name="normalidad"></a>
 Se realizaron evaluaciones de normalidad para las muestras grandes y pequeñas mediante pruebas gráficas y estadísticas. Los resultados no proporcionan evidencia suficiente para asumir normalidad en ninguno de los casos.
@@ -105,7 +105,10 @@ La investigación pretende comprobar si se cumplen las siguientes hipotesis:
 4. Hipótesis: Existe una diferencia significativa entre la proporción de solicitudes de parejas heterosexuales en la primera franja y la proporción de solicitudes de parejas heterosexuales en la segunda franja.
 
 ### <strong>Herramientas</strong><a name="herramientas"></a>
-Se han procesado los datos utilizando la aplicación RStudio para linux, versión 2024.09.0+375 y el paquete "e1071" para calcular los coeficientes de asimetría y apuntamiento. El trabajo de informe estadístico ha sido realizado en el lenguaje de marcado ligero: Markdown, utilizando como entorno de desarrollo Visual Studio Code en su versión 1.94.2. Como control de versiones se ha utilizado GitHub.
+Se han procesado los datos utilizando la aplicación RStudio para linux, versión 2024.09.0+375 y los paquetes: “BSDA” para utilizar la función “z.test” para calcular intervalos de confianza y contrastes
+de hipótesis sobre muestras grandes, “car” para dibujar diagramas QQ para la comprobación de
+normalidad de los datos y realizar el test de Levene sobre la homogeneidad de varianzas, y el
+paquete “tseries” para realizar el test de normalidad Jarque-Bera. El trabajo de informe estadístico ha sido realizado en el lenguaje de marcado ligero: Markdown, utilizando como entorno de desarrollo Visual Studio Code en su versión 1.94.2. Como control de versiones se ha utilizado GitHub:  https://github.com/gonzalorg8799/Estadistica-Inferencial.
 
 ## <u>Resultados</u><a name="resultados"></a>
 ### <strong>Normalidad de los datos</strong><a name="noramlidadDatos"></a>
