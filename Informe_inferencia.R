@@ -474,16 +474,17 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 (p.segunda.franja.homosexuales=total.parejas.homosexuales.segunda.franja/sum(solicitudes.segunda.muestra.grande.transformadas))
 #como las proporciones son muestras muy parecidas primero hay que comprobar si hay alguna diferencia
 #𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera ≠ 𝑝HomoSegunda
-(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
-#como el p-valor(0.1609) es mayor se no hay diferencia significativa
-
-
+(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(63, 63), alternative="two.sided", conf.level=0.95, correct=FALSE))
+#como el p-valor<0.05 hay diferencia significativa
+#𝐻0: pHomoPrimera = pHomoSegunda vs 𝐻𝐴: pHomoPrimera < 𝑝HomoSegunda
+(prop.test(c(total.parejas.homosexuales.primera.franja, total.parejas.homosexuales.segunda.franja), c(63, 63), alternative="less", conf.level=0.95, correct=FALSE))
+#como el p-valor<0.05 hay aceptamos ha, la segunda franja tiene mas proporciones de parejas homosexuales
 ##muestras pequeñas
 (p.primera.franja.homosexuales.muestra.pequeña=total.parejas.homosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
 (p.segunda.franja.homosexuales.muestra.pequeña=total.parejas.homosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
 
 #𝐻0: 𝑝homoPrimera = 𝑝homoSegunda vs 𝐻𝐴: 𝑝homoPrimera ≠ 𝑝homoSegunda
-(prop.test(c(total.parejas.homosexuales.muestra.pequeña.pf, total.parejas.homosexuales.muestra.pequeña.sf),c(total.muestra.pequeña.primera.franja, total.muestra.pequeña.segunda.franja)))
+(prop.test(c(total.parejas.homosexuales.muestra.pequeña.pf, total.parejas.homosexuales.muestra.pequeña.sf),c(20, 20)))
 #como p-valor>0.05 no hay evidencias de que haya una diferencia significativa entre la proporcion de parejas homosexuales en la primera y segunda franja
 
 
@@ -493,13 +494,13 @@ t.test(solicitudes.primera.muestra.pequeña.transformadas, solicitudes.segunda.m
 
 #𝐻0: 𝑝heteroPrimera =𝑝heteroSegunda vs 𝐻𝐴: 𝑝heteroPrimera ≠𝑝heteroSegunda
 (prop.test(c(total.parejas.heterosexuales.primera.franja, total.parejas.heterosexuales.segunda.franja), c(total.primera.franja.grande, total.segunda.franja.grande), alternative="two.sided", conf.level=0.95, correct=FALSE))
-#Como el p-valor(0.0003363)>0.05 entonces se acepta que no hay diferencia significativa
+#Como el p-valor)>0.05 entonces se acepta que no hay diferencia significativa
 
 #muestras pequeñas
 (p.primera.franja.heterosexuales.muestra.pequeña=total.parejas.heterosexuales.muestra.pequeña.pf/total.muestra.pequeña.primera.franja)
 (p.segunda.franja.heterosexuales.muestra.pequeña=total.parejas.heterosexuales.muestra.pequeña.sf/total.muestra.pequeña.segunda.franja)
 
-#𝐻0: 𝑝homoPrimera = 𝑝homoSegunda vs 𝐻𝐴: 𝑝homoPrimera ≠ 𝑝homoSegunda
+#𝐻0: 𝑝heteroPrimera = 𝑝heteroSegunda vs 𝐻𝐴: 𝑝heteroPrimera ≠ 𝑝heteroSegunda
 (prop.test(c(total.parejas.heterosexuales.muestra.pequeña.pf, total.parejas.heterosexuales.muestra.pequeña.sf),c(total.muestra.pequeña.primera.franja, total.muestra.pequeña.segunda.franja)))
 #como p-valor>0.05 no hay evidencias de que haya una diferencia significativa entre la proporcion de parejas heterosexuales en la primera y segunda franja
 

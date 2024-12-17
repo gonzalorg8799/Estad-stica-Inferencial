@@ -229,7 +229,8 @@ poblacionales de las solicitudes de uniones de ambas franjas, y entre las propor
 | Medias iguales | Media de la primera franja mayor que la media de la segunda| 0.00000000000000022 |
 | Medianas iguales | Mediana de la primera franja menor que la mediana de la segunda franja| 0.00000000000000022|
 | Porporciones de heterosexuales iguales | Proporciones de heterosexuales diferentes |  0.4204|
-| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.1609 |
+| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.01357 |
+| Proporciones de homosexuales iguales | Proporciones de homosexuales de la primera franja menor que la proporcion de homosexuales en la segunda | 0.006786 |
 <br>
 <p style='text-align:center;'>tabla 5 Contraste de hipótesis usando muestras pequeñas</p>
 
@@ -238,7 +239,7 @@ poblacionales de las solicitudes de uniones de ambas franjas, y entre las propor
 | Medias iguales | Media de la primera franja menor que la media de la segunda| 0.02403 |
 | Medianas iguales | Mediana de la primera franja menor que la mediana de la segunda franja| 0.02825 |
 | Porporciones de heterosexuales iguales | Proporciones de heterosexuales diferentes |  1 |
-| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.5049 |
+| Proporciones de homosexuales iguales | Proporciones de homosexuales diferentes | 0.3851 |
 
 <br>
 
@@ -255,16 +256,16 @@ Al realizar un contraste de hipótesis paramétrico, como se detalla en la tabla
 
 <u>Proporción de uniones homosexuales y heterosexuales</u>
 
-Respecto a las proporciones de uniones homosexuales, los datos muestran un incremento significativo entre franjas. La primera franja tiene una proporción de 1.24 con un IC al 95% de [1.16, 1.35], mientras que en la segunda franja la proporción aumenta a 44.83 con un IC de [1.25, 1.47]. Este cambio es evidente tanto en las muestras grandes (tabla 2) como en las pequeñas (tabla 3).
+Respecto a las proporciones de uniones homosexuales, los datos muestran un incremento significativo entre franjas. La primera franja tiene una proporción de 1.24 con un IC al 95% de [1.16, 1.35], mientras que en la segunda franja la proporción aumenta a 44.83 con un IC de [1.25, 1.47]. Este cambio es evidente tanto en las muestras grandes (tabla 2) como en las pequeñas (tabla 3), pero a la hora de hacer el contraste de hipótesis en la muestra grande los datos muestran un p-valor obtenido de 0.01 confirmando que en la segunda franja han aumentado las uniones homosexuales, mientras que en las muestras pequeñas el p-valor obtenido es de: 0.38 indicando que no hay diferencia significativa entre las dos franajas, aunque con menor robustez.
 
 En el caso de las uniones heterosexuales, no se detectaron diferencias significativas entre las franjas. El p-valor obtenido (0.4204 en muestras grandes y 1 en muestras pequeñas) es superior al nivel de significación, como se indica en la tabla 4 y 5. Además, los intervalos de confianza (figura 7) muestran un alto grado de solapamiento.
 
 <u>Muestras grandes y pequeñas</u>
 
-Para las muestras pequeñas, las diferencias en las medias y medianas también son significativas (tabla 5). Los p-valores obtenidos para la media (0.02403) y la mediana (0.02825) confirman estas diferencias, aunque con menor robustez estadística en comparación con las muestras grandes.
+Para las muestras pequeñas, las diferencias en las medias y medianas también son significativas (tabla 5). Los p-valores obtenidos para la media (0.02403) y la mediana (0.02825) confirman estas diferencias.
 
 Sin embargo, en el caso de las proporciones de uniones homosexuales y heterosexuales, los resultados con muestras pequeñas no permiten rechazar la hipótesis nula de igualdad, como se observa en los p-valores mayores a 0.05 (tabla 5).
 
 ## <u>Conclusiones</u><a name="conclusiones"></a>
 
-En resumen, los resultados reflejan un incremento significativo en el número medio y mediano de solicitudes de uniones de hecho en la franja 2017-2023 en comparación con la franja 2010-2016. Por otro lado, se aprecia un cambio significativo en la proporción de uniones homosexuales entre las franjas temporales, mientras que no se detectan diferencias significativas en las uniones heterosexuales. Estas conclusiones son consistentes tanto para muestras grandes como pequeñas, aunque con menor solidez estadística en el segundo caso.
+Los resultados reflejan un incremento significativo en la media y la mediana de las solicitudes de uniones de hecho en la franja 2017-2023 en comparación con la franja 2010-2016. Por otro lado, se aprecia un cambio significativo en la proporción de uniones homosexuales entre las franjas temporales, mientras que no se detectan diferencias significativas en las uniones heterosexuales. Estas conclusiones son consistentes basandonos en los datos tanto para muestras grandes como pequeñas, aunque con menor solidez en el caso de las muestras pequeñas.
