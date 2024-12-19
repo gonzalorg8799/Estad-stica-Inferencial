@@ -23,7 +23,7 @@
 
 <div>
 <p style = 'text-align:center;'>
-<img src="logo.jpg" width="">
+<img src="/markdown/logo.jpg" width="">
 </p>
 </div>
 
