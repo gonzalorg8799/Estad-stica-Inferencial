@@ -115,7 +115,7 @@ paquete “tseries” para realizar el test de normalidad Jarque-Bera. El trabaj
 Se ha realizado una comprobación visual para cada una de las muestras, obteniendo los histogramas de las figuras 1 y 2 que se aproximan a la distribución normal.
 <div>
 <p style = 'text-align:center;'>
-<img src="histogramas-muestras.grandes.png" width="">
+<img src="/markdown/histogramas-muestras.grandes.png" width="">
 </p>
 <p style='text-align:center;'>Figura 1</p>
 </div>
@@ -123,7 +123,7 @@ Se ha realizado una comprobación visual para cada una de las muestras, obtenien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="histogramas-muestras-pequeñas.png" width="">
+<img src="/markdown/histogramas-muestras-pequeñas.png" width="">
 </p>
 <p style='text-align:center;'>Figura 2</p>
 </div>
@@ -132,7 +132,7 @@ Tambien se han obtenido los diagramas QQ con región de aceptación del 95% que 
 <br>
 <div>
 <p style = 'text-align:center;'>
-<img src="qqplot-muestra grande.png" width="">
+<img src="/markdown/qqplot-muestra grande.png" width="">
 </p>
 <p style='text-align:center;'>Figura 3</p>
 </div>
@@ -141,7 +141,7 @@ Tambien se han obtenido los diagramas QQ con región de aceptación del 95% que 
 <br>
 <div>
 <p style = 'text-align:center;'>
-<img src="qqplot-muestra pequeña.png" width="">
+<img src="/markdown/qqplot-muestra pequeña.png" width="">
 </p>
 <p style='text-align:center;'>Figura 4</p>
 </div>
@@ -197,21 +197,21 @@ En las figuras 5 a 7 se muestran los intervalos de confianza para la media, la p
 <br>
 <div>
 <p style = 'text-align:center;'>
-<img src="proporcion.media.png" width="">
+<img src="/markdown/proporcion.media.png" width="">
 </p>
 <p style='text-align:center;'>Figura 5</p>
 </div>
 <br>
 <div>
 <p style = 'text-align:center;'>
-<img src="proporcion.heterosexuales.png" width="">
+<img src="/markdown/proporcion.heterosexuales.png" width="">
 </p>
 <p style='text-align:center;'>Figura 6</p>
 </div>
 <br>
 <div>
 <p style = 'text-align:center;'>
-<img src="proporcion.homosexuales.png" width="">
+<img src="/markdown/proporcion.homosexuales.png" width="">
 </p>
 <p style='text-align:center;'>Figura 7</p>
 </div>
